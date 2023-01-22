@@ -1,9 +1,13 @@
 import "./style/App.css";
 
+// Components
+
+import PasswordGenerator from "./components/PasswordGenerator";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <PasswordGenerator />
     </div>
   );
 }
