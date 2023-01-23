@@ -17,16 +17,16 @@ const PasswordGenerator = () => {
     var number = window.confirm("Would you like numbers?");
     var special = window.confirm("Would you like special characters?");
     var randochar = "";
-    if (lowercase == true) {
+    if (lowercase === true) {
       randochar = randochar + "abcdefghijklmnopqrstuvwxyz";
     }
-    if (uppercase == true) {
+    if (uppercase === true) {
       randochar = randochar + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
-    if (number == true) {
+    if (number === true) {
       randochar = randochar + "0123456789";
     }
-    if (special == true) {
+    if (special === true) {
       randochar = randochar + "!@#$%^&*(/?";
     }
 
