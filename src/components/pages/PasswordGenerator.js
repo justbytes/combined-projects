@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import "../style/PasswordGenerator.css";
+import "../../style/PasswordGenerator.css";
 
-const PasswordGenerator = () => {
+export function PasswordGenerator() {
   // var generateBtn = document.querySelector("#generate");
 
   function generatePassword() {
@@ -72,6 +72,4 @@ const PasswordGenerator = () => {
       </div>
     </div>
   );
-};
-
-export default PasswordGenerator;
+}

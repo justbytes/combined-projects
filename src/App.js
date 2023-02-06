@@ -1,17 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./style/App.css";
 
-// Components
-import PasswordGenerator from "./components/PasswordGenerator";
-import LandingPage from "./components/LandingPage";
-import Navbar from "./components/Navbar";
+//Import Bootstrap Navbar
+import { BootstrapNavbar } from "./components/Navbar";
+//Import Pages
+import { PasswordGenerator } from "./components/pages/PasswordGenerator";
+import { HomePage } from "./components/pages/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <LandingPage />
-      <PasswordGenerator />
-    </div>
+    <Router>
+      <BootstrapNavbar />
+      <Routes>
+        <Route path="/homePage" element={<HomePage />} />
+        <Route path="/passwordGenerator" element={<PasswordGenerator />} />
+      </Routes>
+    </Router>
   );
 }
 

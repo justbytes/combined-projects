@@ -1,12 +1,19 @@
-import "../style/Navbar.css";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
-const Navbar = () => {
+export const BootstrapNavbar = () => {
   return (
-    <nav className="navbar">
-      <h1>This will be the NavBar</h1>
-      <button>This will go somewhere.</button>
-    </nav>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/homePage">Combined Projects</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="/homePage">Home</Nav.Link>
+            <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
+            <Nav.Link href="#project">Project</Nav.Link>
+            <Nav.Link href="#project">Project</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   );
 };
-
-export default Navbar;
