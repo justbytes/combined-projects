@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import "../../style/PasswordGenerator.css";
 
 export function PasswordGenerator() {

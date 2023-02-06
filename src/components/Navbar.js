@@ -9,7 +9,7 @@ export const BootstrapNavbar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/homePage">Home</Nav.Link>
             <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
-            <Nav.Link href="#project">Project</Nav.Link>
+            <Nav.Link href="/workDayScheduler">Work Day Scheduler</Nav.Link>
             <Nav.Link href="#project">Project</Nav.Link>
           </Nav>
         </Container>
