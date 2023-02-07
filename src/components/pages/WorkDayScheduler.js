@@ -1,83 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import "../../style/WorkDayScheduler.css";
 
 export function WorkDayScheduler() {
-  document.addEventListener("DOMContentLoaded", function () {
-    // listen for save button clicks
-    document.querySelectorAll(".saveBtn").forEach(function (saveButton) {
-      saveButton.addEventListener("click", function () {
-        // get nearby values
-        var value = saveButton.parentNode.querySelector(".description").value;
-        var time = saveButton.parentNode.getAttribute("id");
+  const [currentHour, setCurrentHour] = useState(moment().hours());
+  const [showNotification, setShowNotification] = useState(false);
 
-        // save in localStorage
-        localStorage.setItem(time, value);
-
-        // Show notification that item was saved to localStorage by adding class 'show'
-        document.querySelector(".notification").classList.add("show");
-
-        // Timeout to remove 'show' class after 5 seconds
-        setTimeout(function () {
-          document.querySelector(".notification").classList.remove("show");
-        }, 5000);
-      });
-    });
-
-    function hourUpdater() {
-      // get current number of hours
-      var currentHour = moment().hours();
-
-      // loop over time blocks
-      document.querySelectorAll(".time-block").forEach(function (timeBlock) {
-        var blockHour = parseInt(timeBlock.getAttribute("id").split("-")[1]);
-
-        // check if we've moved past this time
-        if (blockHour < currentHour) {
-          timeBlock.classList.add("past");
-        } else if (blockHour === currentHour) {
-          timeBlock.classList.remove("past");
-          timeBlock.classList.add("present");
-        } else {
-          timeBlock.classList.remove("past");
-          timeBlock.classList.remove("present");
-          timeBlock.classList.add("future");
-        }
-      });
-    }
-
-    hourUpdater();
-
-    // set up interval to check if current time needs to be updated
+  useEffect(() => {
+    const hourUpdater = () => {
+      setCurrentHour(moment().hours());
+    };
     setInterval(hourUpdater, 15000);
+  }, []);
 
-    // load any saved data from localStorage
-    document.querySelector("#hour-9 .description").value =
-      localStorage.getItem("hour-9");
-    document.querySelector("#hour-10 .description").value =
-      localStorage.getItem("hour-10");
-    document.querySelector("#hour-11 .description").value =
-      localStorage.getItem("hour-11");
-    document.querySelector("#hour-12 .description").value =
-      localStorage.getItem("hour-12");
-    document.querySelector("#hour-13 .description").value =
-      localStorage.getItem("hour-13");
-    document.querySelector("#hour-14 .description").value =
-      localStorage.getItem("hour-14");
-    document.querySelector("#hour-15 .description").value =
-      localStorage.getItem("hour-15");
-    document.querySelector("#hour-16 .description").value =
-      localStorage.getItem("hour-16");
-    document.querySelector("#hour-17 .description").value =
-      localStorage.getItem("hour-17");
+  const handleSaveBtnClick = (time) => {
+    const value = document.querySelector(`#${time} .description`).value;
+    localStorage.setItem(time, value);
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
+  };
 
-    // display current day on page
-    document.querySelector("#currentDay").textContent =
-      moment().format("dddd, MMMM Do");
-  });
   return (
-    <div className="wrapper">
+    <div>
       <header className="jumbotron">
         <h1 className="display-3">Work Day Scheduler</h1>
         <p className="lead">
@@ -85,71 +32,194 @@ export function WorkDayScheduler() {
         </p>
         <p id="currentDay" className="lead"></p>
       </header>
-      <section className="text-center notification" id="notify">
-        Appointment Added to <code>localStorage</code> ✔️
-      </section>
-      <div className="container">
-        <div id="hour-9" className="row time-block">
-          <div className="col-md-1 hour">9AM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+      {showNotification && (
+        <div className="notification show">Item saved to localStorage</div>
+      )}
+      <div id="currentDay">{moment().format("dddd, MMMM Do")}</div>
+      <div className="time-block-container">
+        <div
+          className={`time-block ${
+            currentHour < 9 ? "future" : currentHour === 9 ? "present" : "past"
+          }`}
+          id="hour-9"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-9")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-9")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-10" className="row time-block">
-          <div className="col-md-1 hour">10AM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 10
+              ? "future"
+              : currentHour === 10
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-10")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-10")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-11" className="row time-block">
-          <div className="col-md-1 hour">11AM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 11
+              ? "future"
+              : currentHour === 11
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-11")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-11")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-12" className="row time-block">
-          <div className="col-md-1 hour">12PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 12
+              ? "future"
+              : currentHour === 12
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-12")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-12")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-13" className="row time-block">
-          <div className="col-md-1 hour">1PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 13
+              ? "future"
+              : currentHour === 13
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-13")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-13")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-14" className="row time-block">
-          <div className="col-md-1 hour">2PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 14
+              ? "future"
+              : currentHour === 14
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-14")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-14")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-15" className="row time-block">
-          <div className="col-md-1 hour">3PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 15
+              ? "future"
+              : currentHour === 15
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-15")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-15")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-16" className="row time-block">
-          <div className="col-md-1 hour">4PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 16
+              ? "future"
+              : currentHour === 16
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-16")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-16")}
+          >
+            Save
           </button>
         </div>
-        <div id="hour-17" className="row time-block">
-          <div className="col-md-1 hour">5PM</div>
-          <textarea className="col-md-10 description"></textarea>
-          <button className="btn saveBtn col-md-1">
-            <i className="fas fa-save"></i>
+        <div
+          className={`time-block ${
+            currentHour < 17
+              ? "future"
+              : currentHour === 17
+              ? "present"
+              : "past"
+          }`}
+          id="hour-10"
+        >
+          <textarea
+            className="description"
+            defaultValue={localStorage.getItem("hour-17")}
+          />
+          <button
+            className="saveBtn"
+            onClick={() => handleSaveBtnClick("hour-17")}
+          >
+            Save
           </button>
         </div>
       </div>
