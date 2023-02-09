@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 //Import React Bootstrap components
@@ -15,27 +15,31 @@ import { API_KEY } from "../../secret";
 export function WeatherForcast() {
   const [weatherData, setWeatherData] = useState({});
   const [cityName, setCityName] = useState("");
-  //When search button clicks fetches cities forcast
-  const fetchWeather = async () => {
-    const cityName = await document.querySelector(`.cityName`).value;
-    setCityName(cityName);
 
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`
-      )
-      .then((res) => {
-        console.log(res.data);
+  useEffect(() => {
+    const fetchData = async () => {
+      const city = cityName;
+      if (!city) return;
+
+      try {
+        const res = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        );
         setWeatherData({
           temp: res.data.main.temp,
           feelsLike: res.data.main.feels_like,
           tempMin: res.data.main.temp_min,
           tempMax: res.data.main.temp_max,
         });
-      })
-      .catch((err) => {
+      } catch (err) {
         console.log(err);
-      });
+      }
+    };
+    fetchData();
+  }, [cityName]);
+
+  const handleSearch = () => {
+    setCityName(document.querySelector(`.cityName`).value);
   };
 
   return (
@@ -57,7 +61,7 @@ export function WeatherForcast() {
             <Button
               variant="primary"
               type="button"
-              onClick={() => fetchWeather()}
+              onClick={() => handleSearch()}
             >
               Search
             </Button>
