@@ -15,6 +15,7 @@ function App() {
     <Router>
       <BootstrapNavbar />
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/passwordGenerator" element={<PasswordGenerator />} />
         <Route path="/workDayScheduler" element={<WorkDayScheduler />} />
