@@ -12,7 +12,7 @@ import Row from "react-bootstrap/Row";
 //Get api key from secret.js
 import { API_KEY } from "../../secret";
 
-export function WeatherForcast() {
+export function WeatherForecast() {
   const [weatherData, setWeatherData] = useState({});
   const [cityName, setCityName] = useState("");
 
@@ -22,14 +22,24 @@ export function WeatherForcast() {
       if (!city) return;
 
       try {
-        const res = await axios.get(
+        //Gets long and lat
+        const coords = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
         );
+        let lat = coords.data.coord.lat;
+        let lon = coords.data.coord.lon;
+        //Fetches forecast using long and lat coordinates
+        const forecast = await axios.get(
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+        );
+        console.log(forecast.data);
         setWeatherData({
-          temp: res.data.main.temp,
-          feelsLike: res.data.main.feels_like,
-          tempMin: res.data.main.temp_min,
-          tempMax: res.data.main.temp_max,
+          icon: forecast.data.list[0].weather[0].icon,
+          description: forecast.data.list[0].weather[0].description,
+          temp: forecast.data.list[0].main.temp,
+          feelsLike: forecast.data.list[0].main.feels_like,
+          tempMin: forecast.data.list[0].main.temp_min,
+          tempMax: forecast.data.list[0].main.temp_max,
         });
       } catch (err) {
         console.log(err);
@@ -38,14 +48,16 @@ export function WeatherForcast() {
     fetchData();
   }, [cityName]);
 
+  console.log(weatherData);
+
   const handleSearch = () => {
     setCityName(document.querySelector(`.cityName`).value);
   };
 
   return (
-    <Container>
+    <Container fluid>
       <header>
-        <h1 className="display-3">Weather Forcast</h1>
+        <h1 className="display-3">Weather forecast</h1>
         <p className="lead">Check the weather in your local area!</p>
       </header>
       <Form>
@@ -69,8 +81,13 @@ export function WeatherForcast() {
         </Row>
       </Form>
       <Card border="info" style={{ width: "30rem", height: "20rem" }}>
+        <Card.Title>{cityName.toUpperCase() + " FORECAST"}</Card.Title>
         <Card.Body>
-          <Card.Title>Current Weather for {cityName.toUpperCase()}</Card.Title>
+          <img
+            src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+            alt="Weather icon"
+          />
+          <p>{weatherData.description}</p>
           <p>
             Actual Temp: {((weatherData.temp - 273.15) * 1.8 + 32).toFixed(2)}
           </p>
@@ -85,12 +102,7 @@ export function WeatherForcast() {
             Min Temp: {((weatherData.tempMin - 273.15) * 1.8 + 32).toFixed(2)}
           </p>
 
-          <div id="currentForcast"></div>
-        </Card.Body>
-      </Card>
-      <Card border="info" style={{ width: "30rem", height: "20rem" }}>
-        <Card.Body>
-          <div id="fiveDayForcast"></div>
+          <div id="currentforecast"></div>
         </Card.Body>
       </Card>
     </Container>

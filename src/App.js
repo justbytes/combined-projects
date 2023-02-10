@@ -8,7 +8,7 @@ import { BootstrapNavbar } from "./components/Navbar";
 import { PasswordGenerator } from "./components/pages/PasswordGenerator";
 import { HomePage } from "./components/pages/HomePage";
 import { WorkDayScheduler } from "./components/pages/WorkDayScheduler";
-import { WeatherForcast } from "./components/pages/WeatherForcast";
+import { WeatherForecast } from "./components/pages/WeatherForecast";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/passwordGenerator" element={<PasswordGenerator />} />
         <Route path="/workDayScheduler" element={<WorkDayScheduler />} />
-        <Route path="/weatherForcast" element={<WeatherForcast />} />
+        <Route path="/weatherForecast" element={<WeatherForecast />} />
       </Routes>
     </Router>
   );

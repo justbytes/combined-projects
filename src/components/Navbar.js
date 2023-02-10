@@ -10,7 +10,7 @@ export const BootstrapNavbar = () => {
             <Nav.Link href="/homePage">Home</Nav.Link>
             <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
             <Nav.Link href="/workDayScheduler">Work Day Scheduler</Nav.Link>
-            <Nav.Link href="/weatherForcast">Weather Forcast</Nav.Link>
+            <Nav.Link href="/weatherForecast">Weather Forecast</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
