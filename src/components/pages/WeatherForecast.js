@@ -14,7 +14,8 @@ import Row from "react-bootstrap/Row";
 import { API_KEY } from "../../secret";
 
 export function WeatherForecast() {
-  const [weatherData, setWeatherData] = useState({});
+  const [currentWeatherForecast, setCurrentWeatherForecast] = useState({});
+  const [weatherForecastData, setWeatherForecastData] = useState({});
   const [cityName, setCityName] = useState("San Diego");
 
   useEffect(() => {
@@ -24,31 +25,44 @@ export function WeatherForecast() {
 
       try {
         //Gets long and lat
-        const coords = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        const current = await axios.get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
         );
-        let lat = coords.data.coord.lat;
-        let lon = coords.data.coord.lon;
+        setCurrentWeatherForecast({
+          date: current.data.dt_txt,
+          icon: current.data.weather[0].icon,
+          description: current.data.weather[0].description,
+          temp: current.data.main.temp,
+          feelsLike: current.data.main.feels_like,
+          humidity: current.data.main.humidity,
+          uvi: current.data.uvi,
+          tempMin: current.data.main.temp_min,
+          tempMax: current.data.main.temp_max,
+          windSpeed: current.data.wind.speed,
+          windDirection: current.data.wind.deg,
+        });
+        let lat = current.data.coord.lat;
+        let lon = current.data.coord.lon;
         //Fetches forecast using long and lat coordinates
         const forecast = await axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
         );
         console.log(forecast.data);
-        setWeatherData({
-          //Gets current weather forecast data
-          date: forecast.data.list[4].dt_txt,
-          icon: forecast.data.list[4].weather[0].icon,
-          description: forecast.data.list[4].weather[0].description,
-          temp: forecast.data.list[4].main.temp,
-          feelsLike: forecast.data.list[4].main.feels_like,
-          humidity: forecast.data.list[4].main.humidity,
-          uvi: forecast.data.list[4].uvi,
-          tempMin: forecast.data.list[4].main.temp_min,
-          tempMax: forecast.data.list[4].main.temp_max,
-          windSpeed: forecast.data.list[4].wind.speed,
-          windDirection: forecast.data.list[4].wind.deg,
-
+        setWeatherForecastData({
           //Gets 1st day weather data out of 5 day forecast
+          date0: forecast.data.list[4].dt_txt,
+          icon0: forecast.data.list[4].weather[0].icon,
+          description0: forecast.data.list[4].weather[0].description,
+          temp0: forecast.data.list[4].main.temp,
+          feelsLike0: forecast.data.list[4].main.feels_like,
+          humidity0: forecast.data.list[4].main.humidity,
+          uvi0: forecast.data.list[4].uvi,
+          tempMin0: forecast.data.list[4].main.temp_min,
+          tempMax0: forecast.data.list[4].main.temp_max,
+          windSpeed0: forecast.data.list[4].wind.speed,
+          windDirection0: forecast.data.list[4].wind.deg,
+
+          //Gets 2nd day weather data out of 5 day forecast
           date1: forecast.data.list[12].dt_txt,
           icon1: forecast.data.list[12].weather[0].icon,
           description1: forecast.data.list[12].weather[0].description,
@@ -60,7 +74,7 @@ export function WeatherForecast() {
           windSpeed1: forecast.data.list[12].wind.speed,
           windDirection1: forecast.data.list[12].wind.deg,
 
-          //Gets 2nd day weather data out of 5 day forecast
+          //Gets 3rd day weather data out of 5 day forecast
           date2: forecast.data.list[20].dt_txt,
           icon2: forecast.data.list[20].weather[0].icon,
           description2: forecast.data.list[20].weather[0].description,
@@ -72,7 +86,7 @@ export function WeatherForecast() {
           windSpeed2: forecast.data.list[20].wind.speed,
           windDirection2: forecast.data.list[20].wind.deg,
 
-          //Gets 3rd day weather data out of 5 day forecast
+          //Gets 4th day weather data out of 5 day forecast
           date3: forecast.data.list[28].dt_txt,
           icon3: forecast.data.list[28].weather[0].icon,
           description3: forecast.data.list[28].weather[0].description,
@@ -84,7 +98,7 @@ export function WeatherForecast() {
           windSpeed3: forecast.data.list[28].wind.speed,
           windDirection3: forecast.data.list[28].wind.deg,
 
-          //Gets 4th day weather data out of 5 day forecast
+          //Gets 5th day weather data out of 5 day forecast
           date4: forecast.data.list[36].dt_txt,
           icon4: forecast.data.list[36].weather[0].icon,
           description4: forecast.data.list[36].weather[0].description,
@@ -95,18 +109,6 @@ export function WeatherForecast() {
           tempMax4: forecast.data.list[36].main.temp_max,
           windSpeed4: forecast.data.list[36].wind.speed,
           windDirection4: forecast.data.list[36].wind.deg,
-
-          //Gets 5th day weather data out of 5 day forecast
-          date5: forecast.data.list[39].dt_txt,
-          icon5: forecast.data.list[39].weather[0].icon,
-          description5: forecast.data.list[39].weather[0].description,
-          temp5: forecast.data.list[39].main.temp,
-          feelsLike5: forecast.data.list[39].main.feels_like,
-          humidity5: forecast.data.list[39].main.humidity,
-          tempMin5: forecast.data.list[39].main.temp_min,
-          tempMax5: forecast.data.list[39].main.temp_max,
-          windSpeed5: forecast.data.list[39].wind.speed,
-          windDirection5: forecast.data.list[39].wind.deg,
         });
       } catch (err) {
         console.log(err);
@@ -115,7 +117,7 @@ export function WeatherForecast() {
     fetchData();
   }, [cityName]);
 
-  console.log(weatherData);
+  console.log(weatherForecastData);
 
   const handleSearch = () => {
     setCityName(document.querySelector(`.cityName`).value);
@@ -152,42 +154,50 @@ export function WeatherForecast() {
         className="currentDayForecast"
         style={{ width: "100%" }}
       >
-        <Card.Title>{moment(weatherData.date).format("MM/DD/YYYY")}</Card.Title>
+        <Card.Title>
+          {moment(currentWeatherForecast.date).format("MM/DD/YYYY")}
+        </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${currentWeatherForecast.icon}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description}</strong>
+                <strong>{currentWeatherForecast.description}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp}
+                <strong>Actual Temp:</strong>{" "}
+                {currentWeatherForecast.temp + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike}
+                <strong>Feels Like Temp:</strong>{" "}
+                {currentWeatherForecast.feelsLike + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity + "%"}
+                <strong>Humidity:</strong>{" "}
+                {currentWeatherForecast.humidity + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax}
+                <strong>Max Temp:</strong>{" "}
+                {currentWeatherForecast.tempMax + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin}
+                <strong>Min Temp:</strong>{" "}
+                {currentWeatherForecast.tempMin + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {currentWeatherForecast.windSpeed + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection + "°"}
+                {currentWeatherForecast.windDirection + "°"}
               </li>
             </ul>
           </Col>
@@ -195,43 +205,48 @@ export function WeatherForecast() {
       </Card>
       <Card border="info" className="dayOneForecast" style={{ width: "100%" }}>
         <Card.Title>
-          {moment(weatherData.date1).format("MM/DD/YYYY")}
+          {moment(weatherForecastData.date0).format("MM/DD/YYYY")}
         </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon1}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherForecastData.icon0}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description1}</strong>
+                <strong>{weatherForecastData.description0}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp1}
+                <strong>Actual Temp:</strong>{" "}
+                {weatherForecastData.temp0 + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike1}
+                <strong>Feels Like Temp:</strong>{" "}
+                {weatherForecastData.feelsLike0 + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity1 + "%"}
+                <strong>Humidity:</strong> {weatherForecastData.humidity0 + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax1}
+                <strong>Max Temp:</strong>{" "}
+                {weatherForecastData.tempMax0 + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin1}
+                <strong>Min Temp:</strong>{" "}
+                {weatherForecastData.tempMin0 + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed1 + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {weatherForecastData.windSpeed0 + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection1 + "°"}
+                {weatherForecastData.windDirection0 + "°"}
               </li>
             </ul>
           </Col>
@@ -239,43 +254,48 @@ export function WeatherForecast() {
       </Card>
       <Card border="info" className="dayTwoForecast" style={{ width: "100%" }}>
         <Card.Title>
-          {moment(weatherData.date2).format("MM/DD/YYYY")}
+          {moment(weatherForecastData.date1).format("MM/DD/YYYY")}
         </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon2}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherForecastData.icon1}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description2}</strong>
+                <strong>{weatherForecastData.description1}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp2}
+                <strong>Actual Temp:</strong>{" "}
+                {weatherForecastData.temp1 + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike2}
+                <strong>Feels Like Temp:</strong>{" "}
+                {weatherForecastData.feelsLike1 + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity2 + "%"}
+                <strong>Humidity:</strong> {weatherForecastData.humidity1 + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax2}
+                <strong>Max Temp:</strong>{" "}
+                {weatherForecastData.tempMax1 + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin2}
+                <strong>Min Temp:</strong>{" "}
+                {weatherForecastData.tempMin1 + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed2 + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {weatherForecastData.windSpeed1 + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection2 + "°"}
+                {weatherForecastData.windDirection1 + "°"}
               </li>
             </ul>
           </Col>
@@ -287,43 +307,48 @@ export function WeatherForecast() {
         style={{ width: "100%" }}
       >
         <Card.Title>
-          {moment(weatherData.date3).format("MM/DD/YYYY")}
+          {moment(weatherForecastData.date2).format("MM/DD/YYYY")}
         </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon3}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherForecastData.icon2}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description3}</strong>
+                <strong>{weatherForecastData.description2}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp3}
+                <strong>Actual Temp:</strong>{" "}
+                {weatherForecastData.temp2 + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike3}
+                <strong>Feels Like Temp:</strong>{" "}
+                {weatherForecastData.feelsLike2 + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity3 + "%"}
+                <strong>Humidity:</strong> {weatherForecastData.humidity2 + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax3}
+                <strong>Max Temp:</strong>{" "}
+                {weatherForecastData.tempMax2 + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin3}
+                <strong>Min Temp:</strong>{" "}
+                {weatherForecastData.tempMin2 + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed3 + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {weatherForecastData.windSpeed2 + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection3 + "°"}
+                {weatherForecastData.windDirection2 + "°"}
               </li>
             </ul>
           </Col>
@@ -331,43 +356,48 @@ export function WeatherForecast() {
       </Card>
       <Card border="info" className="dayFourForecast" style={{ width: "100%" }}>
         <Card.Title>
-          {moment(weatherData.date4).format("MM/DD/YYYY")}
+          {moment(weatherForecastData.date3).format("MM/DD/YYYY")}
         </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon4}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherForecastData.icon3}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description4}</strong>
+                <strong>{weatherForecastData.description3}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp4}
+                <strong>Actual Temp:</strong>{" "}
+                {weatherForecastData.temp3 + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike4}
+                <strong>Feels Like Temp:</strong>{" "}
+                {weatherForecastData.feelsLike3 + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity4 + "%"}
+                <strong>Humidity:</strong> {weatherForecastData.humidity3 + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax4}
+                <strong>Max Temp:</strong>{" "}
+                {weatherForecastData.tempMax3 + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin4}
+                <strong>Min Temp:</strong>{" "}
+                {weatherForecastData.tempMin3 + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed4 + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {weatherForecastData.windSpeed3 + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection4 + "°"}
+                {weatherForecastData.windDirection3 + "°"}
               </li>
             </ul>
           </Col>
@@ -375,43 +405,48 @@ export function WeatherForecast() {
       </Card>
       <Card border="info" className="dayFiveForecast" style={{ width: "100%" }}>
         <Card.Title>
-          {moment(weatherData.date5).format("MM/DD/YYYY")}
+          {moment(weatherForecastData.date4).format("MM/DD/YYYY")}
         </Card.Title>
         <Card.Body style={{ minHeight: "10rem" }}>
           <Col>
             <div>
               <img
-                src={`http://openweathermap.org/img/wn/${weatherData.icon5}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherForecastData.icon4}@2x.png`}
                 alt="Weather icon"
               />
               <p>
-                <strong>{weatherData.description5}</strong>
+                <strong>{weatherForecastData.description4}</strong>
               </p>
             </div>
             <ul>
               <li>
-                <strong>Actual Temp:</strong> {weatherData.temp5}
+                <strong>Actual Temp:</strong>{" "}
+                {weatherForecastData.temp4 + " °F"}
               </li>
               <li>
-                <strong>Feels Like Temp:</strong> {weatherData.feelsLike5}
+                <strong>Feels Like Temp:</strong>{" "}
+                {weatherForecastData.feelsLike4 + " °F"}
               </li>
               <li>
-                <strong>Humidity:</strong> {weatherData.humidity5 + "%"}
+                <strong>Humidity:</strong> {weatherForecastData.humidity4 + "%"}
               </li>
               <li>
-                <strong>Max Temp:</strong> {weatherData.tempMax5}
+                <strong>Max Temp:</strong>{" "}
+                {weatherForecastData.tempMax4 + " °F"}
               </li>
               <li>
                 {" "}
-                <strong>Min Temp:</strong> {weatherData.tempMin5}
+                <strong>Min Temp:</strong>{" "}
+                {weatherForecastData.tempMin4 + " °F"}
               </li>
               <li>
                 <strong></strong>
-                <strong>Wind Speed:</strong> {weatherData.windSpeed5 + " mph"}
+                <strong>Wind Speed:</strong>{" "}
+                {weatherForecastData.windSpeed4 + " mph"}
               </li>
               <li>
                 <strong>Wind Direction:</strong>{" "}
-                {weatherData.windDirection5 + "°"}
+                {weatherForecastData.windDirection4 + "°"}
               </li>
             </ul>
           </Col>
