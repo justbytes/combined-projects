@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import "../../style/CodingQuiz.css";
@@ -127,14 +125,8 @@ export function CodingQuiz() {
     }
   }, [time]);
 
-  function showDiv() {
-    const showQuestions = document.querySelector(".row.hidden");
-    showQuestions.classList.remove("hidden");
-    showQuestions.classList.add("show");
-  }
-
   const handleStartClick = () => {
-    showDiv();
+    setGameScreen("show");
   };
 
   const handleOptionClick = (event) => {
@@ -150,59 +142,71 @@ export function CodingQuiz() {
 
   return (
     <Container>
-      <Row>
-        {/* col s12 */}
-        <Col>
-          <h1>Code Quiz</h1>
-          <Button
-            onClick={handleStartClick}
-            className="waves-effect waves-light btn"
-          >
-            Start
-          </Button>
-        </Col>
-        <Row className=" row hidden">
+      <header>
+        <h1 className="display-3">Code Quiz</h1>
+        <Button
+          onClick={handleStartClick}
+          className="waves-effect waves-light btn"
+        >
+          Start
+        </Button>
+        <Row className={`scoreRow ${gameScreen}`}>
           <div id="timer">{time}</div>
           <div id="score">Score: {score}</div>
-          <div className="col s12 m6">
-            Question: {questions[currentQuestion].question}
-          </div>
-          <div className="col s12 m6">
-            Options:
-            <p
+        </Row>
+      </header>
+      {/* col s12 */}
+      <Row className={`row ${gameScreen}`}>
+        {/* col s12 m6 */}
+        <Col className="col s12 m6">
+          <h3>Question:</h3>
+          <span className="question">
+            {questions[currentQuestion].question}
+          </span>
+        </Col>
+        <Col className="col s12 m6">
+          <h3>Choices:</h3>
+          <Row>
+            <Button
               className="option"
               data-option={questions[currentQuestion].options[0]}
               data-answer={questions[currentQuestion].answer}
               onClick={handleOptionClick}
             >
               {questions[currentQuestion].options[0]}
-            </p>
-            <p
+            </Button>
+          </Row>
+          <Row>
+            <Button
               className="option"
               data-option={questions[currentQuestion].options[1]}
               data-answer={questions[currentQuestion].answer}
               onClick={handleOptionClick}
             >
               {questions[currentQuestion].options[1]}
-            </p>
-            <p
+            </Button>
+          </Row>
+          <Row>
+            <Button
               className="option"
               data-option={questions[currentQuestion].options[2]}
               data-answer={questions[currentQuestion].answer}
               onClick={handleOptionClick}
             >
               {questions[currentQuestion].options[2]}
-            </p>
-            <p
+            </Button>
+          </Row>
+          <Row>
+            <Button
               className="option"
               data-option={questions[currentQuestion].options[3]}
               data-answer={questions[currentQuestion].answer}
               onClick={handleOptionClick}
             >
               {questions[currentQuestion].options[3]}
-            </p>
-          </div>
-        </Row>
+            </Button>
+          </Row>
+        </Col>
       </Row>
     </Container>
   );
