@@ -141,7 +141,7 @@ export function CodingQuiz() {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <header>
         <h1 className="display-3">Code Quiz</h1>
         <Button

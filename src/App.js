@@ -9,6 +9,7 @@ import { PasswordGenerator } from "./components/pages/PasswordGenerator";
 import { HomePage } from "./components/pages/HomePage";
 import { WorkDayScheduler } from "./components/pages/WorkDayScheduler";
 import { WeatherForecast } from "./components/pages/WeatherForecast";
+import { CodingQuiz } from "./components/pages/CodingQuiz";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/passwordGenerator" element={<PasswordGenerator />} />
         <Route path="/workDayScheduler" element={<WorkDayScheduler />} />
         <Route path="/weatherForecast" element={<WeatherForecast />} />
+        <Route path="/codingQuiz" element={<CodingQuiz />} />
       </Routes>
     </Router>
   );

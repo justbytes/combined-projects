@@ -1,73 +1,70 @@
-import "../../style/PasswordGenerator.css";
+import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 export function PasswordGenerator() {
-  // var generateBtn = document.querySelector("#generate");
+  const [password, setPassword] = useState("");
 
   function generatePassword() {
-    var password = "";
-
-    var charnumber = window.prompt("Enter how many characters 8-120");
+    let charnumber = window.prompt("Enter how many characters 8-120");
     if (!charnumber || charnumber < 8 || charnumber > 120) {
       return generatePassword();
     }
-    var lowercase = window.confirm("Would you like lowercase?");
-    var uppercase = window.confirm("Would you like uppercase?");
-    var number = window.confirm("Would you like numbers?");
-    var special = window.confirm("Would you like special characters?");
-    var randochar = "";
-    if (lowercase === true) {
-      randochar = randochar + "abcdefghijklmnopqrstuvwxyz";
+    let lowercase = window.confirm("Would you like lowercase?");
+    let uppercase = window.confirm("Would you like uppercase?");
+    let numbers = window.confirm("Would you like numbers?");
+    let special = window.confirm("Would you like special characters?");
+    let randochar = "";
+    if (lowercase) {
+      randochar += "abcdefghijklmnopqrstuvwxyz";
     }
-    if (uppercase === true) {
-      randochar = randochar + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (uppercase) {
+      randochar += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
-    if (number === true) {
-      randochar = randochar + "0123456789";
+    if (numbers) {
+      randochar += "0123456789";
     }
-    if (special === true) {
-      randochar = randochar + "!@#$%^&*(/?";
+    if (special) {
+      randochar += "!@#$%^&*(/?";
     }
 
-    for (var i = 0; i < charnumber; i++) {
-      password += randochar.charAt(
+    let generatedPassword = "";
+    for (let i = 0; i < charnumber; i++) {
+      generatedPassword += randochar.charAt(
         Math.floor(Math.random() * randochar.length)
       );
     }
 
-    return password;
+    return generatedPassword;
   }
 
-  // Write password to the #password input
   function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
+    let generatedPassword = generatePassword();
+    setPassword(generatedPassword);
   }
 
   return (
-    <div className="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div className="card">
-        <div className="card-header">
+    <Container fluid>
+      <Card>
+        <Card.Header>
+          <h1>Password Generator</h1>
+        </Card.Header>
+        <Card.Title>
           <h2>Generate a Password</h2>
-        </div>
-        <div className="card-body">
+        </Card.Title>
+        <Card.Body>
           <textarea
             readOnly
-            id="password"
+            value={password}
             placeholder="Your Secure Password"
             aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div className="card-footer">
-          <button id="generate" className="btn" onClick={writePassword}>
-            Generate Password
-          </button>
-        </div>
-      </div>
-    </div>
+          />
+        </Card.Body>
+        <Button id="generate" className="btn" onClick={writePassword}>
+          Generate Password
+        </Button>
+      </Card>
+    </Container>
   );
 }
