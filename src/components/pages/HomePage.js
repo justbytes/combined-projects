@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 
 export function HomePage() {
   return (
-    <Container>
+    <Container fluid>
       <Card
         bg="secondary"
         key="secondary"

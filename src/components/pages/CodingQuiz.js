@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
+//Import react bootstrap components
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-
+import Card from "react-bootstrap/Card";
+//Import react animation
+import Confetti from "react-confetti";
+//Import styling
 import "../../style/CodingQuiz.css";
 
 export function CodingQuiz() {
+  //Set state variables
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameScreen, setGameScreen] = useState("hidden");
+  const [scoreBoard, setScoreBoard] = useState("hidden");
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(45);
-
+  const [showConfetti, setShowConfetti] = useState(false);
+  //Quiz questions, choices, and answers
   const questions = [
     {
       question: "What is React.js",
@@ -116,7 +123,7 @@ export function CodingQuiz() {
       answer: `'import ComponentName from './ComponentName'`,
     },
   ];
-
+  //Timer
   useEffect(() => {
     if (time > 0) {
       setTimeout(() => {
@@ -124,26 +131,32 @@ export function CodingQuiz() {
       }, 1000);
     }
   }, [time]);
-
+  //Displays the quiz
   const handleStartClick = () => {
     setGameScreen("show");
   };
 
   const handleOptionClick = (event) => {
+    //Adds up correct answers to score
     if (event.target.dataset.answer === event.target.dataset.option) {
       setScore(score + 1);
     }
+    //Cycles through questions
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
+      //Hides the quiz and displays score board and triggers confetti animation
     } else {
-      console.log("Quiz finsihed");
+      setGameScreen("hidden");
+      setScoreBoard("show");
+      setShowConfetti(true);
     }
   };
 
   return (
     <Container fluid>
       <header>
-        <h1 className="display-3">Code Quiz</h1>
+        {showConfetti && <Confetti />}
+        <h1 className="display-3">React.JS Quiz</h1>
         <Button
           onClick={handleStartClick}
           className="waves-effect waves-light btn"
@@ -152,20 +165,21 @@ export function CodingQuiz() {
         </Button>
         <Row className={`scoreRow ${gameScreen}`}>
           <div id="timer">{time}</div>
-          <div id="score">Score: {score}</div>
         </Row>
       </header>
-      {/* col s12 */}
-      <Row className={`row ${gameScreen}`}>
-        {/* col s12 m6 */}
+      <Card className={`row ${gameScreen}`}>
         <Col className="col s12 m6">
           <h3>Question:</h3>
           <span className="question">
             {questions[currentQuestion].question}
           </span>
         </Col>
-        <Col className="col s12 m6">
+      </Card>
+      <Card className={`choices ${gameScreen}`}>
+        <Card.Title>
           <h3>Choices:</h3>
+        </Card.Title>
+        <Card.Body>
           <Row>
             <Button
               className="option"
@@ -206,8 +220,17 @@ export function CodingQuiz() {
               {questions[currentQuestion].options[3]}
             </Button>
           </Row>
-        </Col>
-      </Row>
+        </Card.Body>
+      </Card>
+      <Card className={`scoreBoard ${scoreBoard}`}>
+        <Card.Title>
+          <h3>Your Results</h3>
+        </Card.Title>
+        <Card.Body>
+          <h5>{score}</h5>
+          <Button onClick={() => window.location.reload(false)}>Retest</Button>
+        </Card.Body>
+      </Card>
     </Container>
   );
 }

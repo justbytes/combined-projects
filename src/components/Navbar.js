@@ -11,7 +11,7 @@ export const BootstrapNavbar = () => {
             <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
             <Nav.Link href="/workDayScheduler">Work Day Scheduler</Nav.Link>
             <Nav.Link href="/weatherForecast">Weather Forecast</Nav.Link>
-            <Nav.Link href="/codingQuiz">Coding Quiz</Nav.Link>
+            <Nav.Link href="/codingQuiz">React Quiz</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
