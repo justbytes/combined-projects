@@ -12,6 +12,7 @@ import "../../style/CodingQuiz.css";
 
 export function CodingQuiz() {
   //Set state variables
+  const [startScreen, setStartScreen] = useState("show");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameScreen, setGameScreen] = useState("hidden");
   const [scoreBoard, setScoreBoard] = useState("hidden");
@@ -130,10 +131,16 @@ export function CodingQuiz() {
         setTime(time - 1);
       }, 1000);
     }
+    if (time === 0) {
+      setGameScreen("hidden");
+      setScoreBoard("show");
+    }
   }, [time]);
+
   //Displays the quiz
   const handleStartClick = () => {
     setGameScreen("show");
+    setStartScreen("hidden");
   };
 
   const handleOptionClick = (event) => {
@@ -157,23 +164,39 @@ export function CodingQuiz() {
       <header>
         {showConfetti && <Confetti />}
         <h1 className="display-3">React.JS Quiz</h1>
-        <Button
-          onClick={handleStartClick}
-          className="waves-effect waves-light btn"
-        >
-          Start
-        </Button>
         <Row className={`scoreRow ${gameScreen}`}>
           <div id="timer">{time}</div>
         </Row>
       </header>
-      <Card className={`row ${gameScreen}`}>
-        <Col className="col s12 m6">
+      {/* Initial starting screen displaying instructions to user */}
+      <Card className={`instructions ${startScreen}`}>
+        <Card.Header>Are you ready?</Card.Header>
+        <Card.Body>
+          <Card.Title>Instructions</Card.Title>
+          <Card.Text>
+            You have 45 seconds to complete a 10 question quiz about the
+            React.js framework. <br />
+            Your score will be displayed after answering all the questions.{" "}
+            <br />
+            Good Luck!
+          </Card.Text>
+          <Button onClick={handleStartClick} className="primary">
+            Start
+          </Button>
+        </Card.Body>
+        {/* After start button is clicked it will display question and answers */}
+      </Card>
+      <Card className={`questions ${gameScreen}`}>
+        <Card.Title>
           <h3>Question:</h3>
-          <span className="question">
-            {questions[currentQuestion].question}
-          </span>
-        </Col>
+        </Card.Title>
+        <Card.Body>
+          <Row>
+            <span className="question">
+              {questions[currentQuestion].question}
+            </span>
+          </Row>
+        </Card.Body>
       </Card>
       <Card className={`choices ${gameScreen}`}>
         <Card.Title>
@@ -222,6 +245,7 @@ export function CodingQuiz() {
           </Row>
         </Card.Body>
       </Card>
+      {/* After quiz is finished it will display the scoreboard and trigger animation */}
       <Card className={`scoreBoard ${scoreBoard}`}>
         <Card.Title>
           <h3>Your Results</h3>
