@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Container, Form, Button } from "react-bootstrap";
+
+//Import react bootstrap components
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+//Import API
 import moment from "moment";
 
+//Import styling
 import "../../style/WorkDayScheduler.css";
 
 export function WorkDayScheduler() {
   const [currentHour, setCurrentHour] = useState(moment().hours());
   const [showNotification, setShowNotification] = useState(false);
 
+  //Update hour via moment
   useEffect(() => {
     const hourUpdater = () => {
       setCurrentHour(moment().hours());
@@ -15,6 +24,7 @@ export function WorkDayScheduler() {
     setInterval(hourUpdater, 15000);
   }, []);
 
+  //Saves notes to local storage
   const handleSaveBtnClick = (time) => {
     const value = document.querySelector(`#${time} .description`).value;
     localStorage.setItem(time, value);

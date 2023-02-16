@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 //Import react bootstrap components
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+
 //Import react animation
 import Confetti from "react-confetti";
+
 //Import styling
 import "../../style/CodingQuiz.css";
 
@@ -19,6 +21,7 @@ export function CodingQuiz() {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(45);
   const [showConfetti, setShowConfetti] = useState(false);
+
   //Quiz questions, choices, and answers
   const questions = [
     {
@@ -124,27 +127,27 @@ export function CodingQuiz() {
       answer: `'import ComponentName from './ComponentName'`,
     },
   ];
-  //Timer
-  useEffect(() => {
-    if (time > 0) {
-      setTimeout(() => {
-        setTime(time - 1);
-      }, 1000);
-    }
-    if (time === 0) {
-      setGameScreen("hidden");
-      setScoreBoard("show");
-    }
-  }, [time]);
 
-  //Displays the quiz
+  //Displays the quiz sets timer
   const handleStartClick = () => {
     setGameScreen("show");
     setStartScreen("hidden");
+    setTime(45); // set initial time
+
+    const timer = setInterval(() => {
+      setTime((time) => time - 1); // decrement time every second
+    }, 1000);
+
+    // clear the timer when time is up
+    setTimeout(() => {
+      clearInterval(timer);
+      setGameScreen("hidden");
+      setScoreBoard("show");
+    }, 45000);
   };
 
   const handleOptionClick = (event) => {
-    //Adds up correct answers to score
+    //Adds correct answers to score
     if (event.target.dataset.answer === event.target.dataset.option) {
       setScore(score + 1);
     }
@@ -161,9 +164,10 @@ export function CodingQuiz() {
 
   return (
     <Container fluid>
-      <header>
+      <header className="jumbotron">
         {showConfetti && <Confetti />}
         <h1 className="display-3">React.JS Quiz</h1>
+        <p className="lead">Test your React knowledge</p>
         <Row className={`scoreRow ${gameScreen}`}>
           <div id="timer">{time}</div>
         </Row>

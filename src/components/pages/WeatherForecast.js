@@ -26,16 +26,17 @@ export function WeatherForecast() {
 
   useEffect(() => {
     const fetchData = async () => {
+      //Set city and state to local variable
       const city = cityName;
       const state = stateName;
       if (!city) return;
-
-      console.log(state);
+      //API Calls
       try {
-        //Gets long and lat from searched city
+        //Gets long and lat from searched city and state
         const current = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},US&units=imperial&appid=${API_KEY}`
         );
+        //Sets the current weather forecast
         setCurrentWeatherForecast({
           date: current.data.dt_txt,
           icon: current.data.weather[0].icon,
@@ -49,13 +50,13 @@ export function WeatherForecast() {
           windSpeed: current.data.wind.speed,
           windDirection: current.data.wind.deg,
         });
+        //Set lon and lat for 5 day forecast api call
         let lat = current.data.coord.lat;
         let lon = current.data.coord.lon;
-        //Fetches forecast using long and lat coordinates
         const forecast = await axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
         );
-        console.log(forecast.data);
+        //Set 5 day forecast weather data
         setWeatherForecastData({
           //Gets 1st day weather data out of 5 day forecast
           date0: forecast.data.list[4].dt_txt,
@@ -125,8 +126,7 @@ export function WeatherForecast() {
     fetchData();
   }, [cityName, stateName]);
 
-  console.log(weatherForecastData);
-
+  //Get city and state values for api call
   const handleSearch = () => {
     setCityName(document.querySelector(`.cityName`).value);
     setStateName(document.querySelector(`.stateName`).value);
@@ -134,9 +134,11 @@ export function WeatherForecast() {
 
   return (
     <Container fluid>
-      <header>
+      <header className="jumbotron">
         <h1 className="display-3">Weather forecast</h1>
-        <p className="lead">Check the weather in your local area!</p>
+        <p className="lead">
+          Forecast for {cityName}, {stateName}.
+        </p>
       </header>
       {/* Search city name and state code to get forecast */}
       <Form>
@@ -176,7 +178,10 @@ export function WeatherForecast() {
           {moment(currentWeatherForecast.date).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{currentWeatherForecast.description}</strong> <br />
+          <strong className="card-description">
+            {currentWeatherForecast.description}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${currentWeatherForecast.icon}@2x.png`}
             alt="Weather icon"
@@ -220,7 +225,10 @@ export function WeatherForecast() {
           {moment(weatherForecastData.date0).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{weatherForecastData.description0}</strong> <br />
+          <strong className="card-description">
+            {weatherForecastData.description0}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${weatherForecastData.icon0}@2x.png`}
             alt="Weather icon"
@@ -261,7 +269,10 @@ export function WeatherForecast() {
           {moment(weatherForecastData.date1).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{weatherForecastData.description1}</strong> <br />
+          <strong className="card-description">
+            {weatherForecastData.description1}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${weatherForecastData.icon1}@2x.png`}
             alt="Weather icon"
@@ -302,7 +313,10 @@ export function WeatherForecast() {
           {moment(weatherForecastData.date2).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{weatherForecastData.description2}</strong> <br />
+          <strong className="card-description">
+            {weatherForecastData.description2}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${weatherForecastData.icon2}@2x.png`}
             alt="Weather icon"
@@ -343,7 +357,10 @@ export function WeatherForecast() {
           {moment(weatherForecastData.date3).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{weatherForecastData.description3}</strong> <br />
+          <strong className="card-description">
+            {weatherForecastData.description3}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${weatherForecastData.icon3}@2x.png`}
             alt="Weather icon"
@@ -384,7 +401,10 @@ export function WeatherForecast() {
           {moment(weatherForecastData.date4).format("MM/DD/YYYY")}
         </Card.Header>
         <Card.Title>
-          <strong>{weatherForecastData.description4}</strong> <br />
+          <strong className="card-description">
+            {weatherForecastData.description4}
+          </strong>{" "}
+          <br />
           <img
             src={`http://openweathermap.org/img/wn/${weatherForecastData.icon4}@2x.png`}
             alt="Weather icon"
