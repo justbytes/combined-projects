@@ -15,6 +15,10 @@ textarea {
   border-bottom: 10px solid black;
 }
 
+.form-control {
+  border-radius: 0;
+}
+
 .description {
   white-space: pre-wrap;
 }
@@ -25,11 +29,11 @@ textarea {
   margin-top: 15px;
 }
 
-.row {
+/* .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-}
+} */
 
 .hour {
   background-color: #ffffff;
@@ -56,11 +60,10 @@ textarea {
 }
 
 .saveBtn {
-  /* border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px; */
   background-color: #06aed5;
   color: white;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .saveBtn i:hover {
