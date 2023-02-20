@@ -1,0 +1,12 @@
+body {
+  color: grey;
+  background: linear-gradient(170deg, #050505 00%, #0f0f0f 100%);
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

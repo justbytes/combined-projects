@@ -8,7 +8,7 @@ import "../style/Navbar.css";
 export const BootstrapNavbar = () => {
   return (
     <>
-      <Navbar bg="dark" className="navbar" variant="dark" expand="lg">
+      <Navbar variant="dark" className="navbar" expand="lg">
         <Container fluid>
           <Navbar.Brand href="/homePage">Combined Projects</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,7 +35,7 @@ export const BootstrapNavbar = () => {
             </Nav>
             <Nav className="ml-auto">
               <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
-              <Nav.Link href="/workDayScheduler">Work Day Scheduler</Nav.Link>
+              <Nav.Link href="/workDayScheduler">Workday Scheduler</Nav.Link>
               <Nav.Link href="/weatherForecast">Weather Forecast</Nav.Link>
               <Nav.Link href="/codingQuiz">React Quiz</Nav.Link>
             </Nav>
