@@ -1,26 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,500;0,800;1,900&display=swap");
-body {
-  font-family: "Vollkorn", serif;
-  color: grey;
-  background: linear-gradient(170deg, #050505f5 00%, #181717 100%);
+
+:root {
+  --text-color: white;
+  /* header background colors */
+  --light-pink-transparent: #ff86ff31;
+  --pink-transparent: #fb2bff25;
+  --purple-transparent: #c102d32c;
+  --violet-transparent: #5f0fff27;
+  --blue-transparent: #1a05d91a;
+  /* main color theme */
+  --light-pink: #ff86ff;
+  --pink: #fd2bff;
+  --purple: #c202d3;
+  --violet: #5e0fff;
+  --blue: #1905d9;
+  /* border colors */
+  --border-blue: rgb(1, 110, 218);
+  --border-purple: rgb(217, 0, 192);
 }
 
-header.jumbotron {
-  text-align: center;
-  color: white;
-  position: relative;
+body {
+  font-family: "Vollkorn", serif;
+  background: linear-gradient(170deg, #050505f5 0%, #181717 100%);
 }
-header.jumbotron::after {
-  margin-bottom: -5px;
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    rgba(1, 110, 218, 1),
-    rgba(217, 0, 192, 1)
-  );
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px 5px var(--border-purple);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px var(--border-purple);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px var(--border-purple);
+  }
 }

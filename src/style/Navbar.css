@@ -1,46 +1,58 @@
-:root {
-  --text-color: 256, 256, 256;
-}
-
+/* Styling for actual navbar */
 .navbar-container {
   font-size: 18px;
   background-color: rgba(5, 0, 7, 0.753);
 }
-
+/* Sets brand name text size and glow effect */
 a.brand-name {
   font-size: 24px;
-  text-shadow: 0 0 80px rgba(255, 255, 255, 0.822),
-    0 0 32px rgba(221, 228, 247, 0.7);
+  text-shadow: 0 0 80px var(--light-pink), 0 0 32px var(--violet);
   color: white;
 }
+a.brand-name:hover {
+  background: linear-gradient(
+    to right,
+    var(--border-blue),
+    var(--border-purple)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+/* End of brand name style */
 
+/* Nav Links */
+a.nav-link,
 a.dropdown-toggle.show.nav-link {
   color: white;
 }
-
-a.nav-link {
-  color: white;
-}
-
-a.brand-name:hover {
-  background: linear-gradient(to right, #30cfd0, #c43ad6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 a.nav-link:hover {
-  color: rgba(var(--text-color));
+  color: var(--text-color);
   border: 2px double transparent;
   background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
-    radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
 
-button.navbar-toggler {
-  background: white;
-}
+/* End Nav Links*/
 
+/* When navbar is collapsed */
+button.navbar-toggler,
 button.navbar-toggler.collapsed {
   background: white;
 }
+button.navbar-toggler:hover,
+button.navbar-toggler.collapsed:hover {
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(231, 231, 231), rgb(235, 235, 235)),
+    radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+/* End of navbar collapsed */
