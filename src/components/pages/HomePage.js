@@ -9,11 +9,10 @@ export function HomePage() {
     <Container fluid>
       <header className="jumbotron">
         <h1 className="display-3">Combined Projects</h1>
-        <p className="lead">Hello there!</p>
-        <p id="currentDay" className="lead"></p>
+        <p className="lead">Hello There!</p>
       </header>
 
-      <Card>
+      <Card className="about">
         <Card.Header as="h5">About this project</Card.Header>
         <Card.Body>
           <Card.Text>
@@ -30,7 +29,6 @@ export function HomePage() {
       <div className="card-wrapper">
         <Card
           bg="secondary"
-          key="secondary"
           text="light"
           style={{ width: "18rem" }}
           className="mb-2"
@@ -48,7 +46,6 @@ export function HomePage() {
         </Card>
         <Card
           bg="secondary"
-          key="secondary"
           text="light"
           style={{ width: "18rem" }}
           className="mb-2"
@@ -65,7 +62,6 @@ export function HomePage() {
         </Card>
         <Card
           bg="secondary"
-          key="secondary"
           text="light"
           style={{ width: "18rem" }}
           className="mb-2"
@@ -81,7 +77,6 @@ export function HomePage() {
         </Card>
         <Card
           bg="secondary"
-          key="secondary"
           text="light"
           style={{ width: "18rem" }}
           className="mb-2"
