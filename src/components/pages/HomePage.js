@@ -74,9 +74,8 @@ export function HomePage() {
           <Card.Body>
             <Card.Text>
               User-friendly weather forecast app that provides both current and
-              5-day forecasts. Stay on top of the weather with intuitive
-              navigation and easy-to-read visuals. Plan your day with confidence
-              and never be caught off guard by the weather again.
+              5-day forecasts. Stay on top of the weather and plan your day with
+              confidence and never be caught off guard by the weather again.
             </Card.Text>
           </Card.Body>
         </Card>

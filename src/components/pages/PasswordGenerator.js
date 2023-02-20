@@ -11,52 +11,36 @@ import "../../style/PasswordGenerator.css";
 
 export function PasswordGenerator() {
   //Set state variables
+  const [passwordLength, setPasswordLength] = useState(32);
+  const [uppercase, setUppercase] = useState(false);
+  const [lowercase, setLowercase] = useState(false);
+  const [numbers, setNumbers] = useState(false);
+  const [specialCharacters, setSpecialCharacters] = useState(false);
   const [password, setPassword] = useState("");
 
-  function generatePassword() {
-    //Empty variable that will contain users params for their password
-    let randochar = "";
+  const generatePassword = () => {
+    //Empty variable to input password characters
+    let passwordCharacters = "";
     let generatedPassword = "";
 
-    //Prompt user for password params
-    let charnumber = window.prompt("Enter how many characters 8-120");
-    //Conditional that requires user to put in correct ammount of characters
-    if (!charnumber || charnumber < 8 || charnumber > 120) {
-      return generatePassword();
-    }
-    let lowercase = window.confirm("Would you like lowercase?");
-    let uppercase = window.confirm("Would you like uppercase?");
-    let numbers = window.confirm("Would you like numbers?");
-    let special = window.confirm("Would you like special characters?");
+    //Check for truthiness and add characters to passwordCharacters
+    if (uppercase) passwordCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (lowercase) passwordCharacters += "abcdefghijklmnopqrstuvwxyz";
+    if (numbers) passwordCharacters += "0123456789";
+    if (specialCharacters) passwordCharacters += "!@#$%^&*(/?";
 
-    //Add all user params to randochar variable
-    if (lowercase) {
-      randochar += "abcdefghijklmnopqrstuvwxyz";
-    }
-    if (uppercase) {
-      randochar += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    }
-    if (numbers) {
-      randochar += "0123456789";
-    }
-    if (special) {
-      randochar += "!@#$%^&*(/?";
-    }
-
-    //Loop through params and generate random password
-    for (let i = 0; i < charnumber; i++) {
-      generatedPassword += randochar.charAt(
-        Math.floor(Math.random() * randochar.length)
+    //Generate random password
+    for (let i = 0; i < passwordLength; i++) {
+      generatedPassword += passwordCharacters.charAt(
+        Math.floor(Math.random() * passwordCharacters.length)
       );
     }
-    return generatedPassword;
-  }
-
-  //Set password to generate password variable
-  function writePassword() {
-    let generatedPassword = generatePassword();
     setPassword(generatedPassword);
-  }
+  };
+  //Get lenght of password
+  const handleRangeChange = (event) => {
+    setPasswordLength(event.target.value);
+  };
 
   return (
     <Container fluid>
@@ -77,8 +61,40 @@ export function PasswordGenerator() {
             aria-label="Generated Password"
             readOnly
           />
+          <Form.Label>Password length: {passwordLength}</Form.Label>
+          <Form.Range
+            min="8"
+            max="120"
+            step="1"
+            value={passwordLength}
+            onInput={handleRangeChange}
+          />
+          <Form.Check
+            type="checkbox"
+            label="Uppercase"
+            checked={uppercase}
+            onChange={(e) => setUppercase(e.target.checked)}
+          />
+          <Form.Check
+            type="checkbox"
+            label="Lowercase"
+            checked={lowercase}
+            onChange={(e) => setLowercase(e.target.checked)}
+          />
+          <Form.Check
+            type="checkbox"
+            label="Numbers"
+            checked={numbers}
+            onChange={(e) => setNumbers(e.target.checked)}
+          />
+          <Form.Check
+            type="checkbox"
+            label="Special Characters"
+            checked={specialCharacters}
+            onChange={(e) => setSpecialCharacters(e.target.checked)}
+          />
         </Card.Body>
-        <Button id="generate" className="btn" onClick={writePassword}>
+        <Button id="generate" className="btn" onClick={generatePassword}>
           Generate Password
         </Button>
       </Card>
