@@ -1,12 +1,13 @@
 /* Styling for actual navbar */
 .navbar-container {
   font-size: 18px;
-  background-color: rgba(5, 0, 7, 0.753);
+  background: black;
+  box-shadow: inset 5px 5px 25px 5px #3e3c41, 5px 5px 12px 2px black;
 }
 /* Sets brand name text size and glow effect */
 a.brand-name {
   font-size: 24px;
-  text-shadow: 0 0 80px var(--light-pink), 0 0 32px var(--violet);
+  /* text-shadow: 0 0 80px var(--light-pink), 0 0 32px var(--violet); */
   color: white;
 }
 a.brand-name:hover {

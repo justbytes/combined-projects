@@ -22,6 +22,10 @@
 body {
   font-family: "Vollkorn", serif;
   background: linear-gradient(170deg, #050505f5 0%, #181717 100%);
+  background-image: url("../imgs/nothingToSeeHere.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 @keyframes glow {

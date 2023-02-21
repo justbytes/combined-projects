@@ -9,10 +9,9 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
   border-radius: 5px;
-  box-shadow: 0 0 10px 5px var(--border-purple);
-  animation: glow 5s ease-in-out infinite;
-
-  margin: 2px;
+  box-shadow: 0 0 5px 0 var(--border-purple);
+  animation: glow 3s ease-in-out infinite;
+  margin-top: 5px;
 }
 .header {
   width: 100%;
@@ -27,27 +26,28 @@
     #42238054 100%
   );
 }
-
 .about-card {
+  font-size: 24px;
   width: 80%;
   margin: 40px;
-  background-color: #c102d350;
-  box-shadow: 0 0 2px 2px var(--border-purple);
+  background-color: #56505a36;
+  box-shadow: 0 0 2px 2px white;
   color: var(--text-color);
 }
-
-.card-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  vertical-align: top !important;
-  gap: 1rem;
+.projects {
+  width: 80%;
 }
 
-.project {
-  background-color: #c102d350;
-  box-shadow: 0 0 2px 2px var(--border-purple);
+div.accordion-item {
+  background-color: #56505a36;
+  color: white;
+  box-shadow: 0 0 2px 2px white;
+  font-size: 24px;
+}
+
+button.accordion-button,
+button.accordion-button.collapsed {
+  background-color: #56505a36;
   color: var(--text-color);
-  width: 25%;
+  font-size: 24px;
 }
