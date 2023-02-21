@@ -28,7 +28,7 @@ a.dropdown-toggle.show.nav-link {
   color: white;
 }
 a.nav-link:hover {
-  color: var(--text-color);
+  color: white;
   border: 2px double transparent;
   background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
     radial-gradient(

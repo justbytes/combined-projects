@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
 
 import "../../style/HomePage.css";
 
@@ -9,7 +10,7 @@ export function HomePage() {
     <>
       <div className="header-border">
         <div className="header">
-          <h1>Combined Projects</h1>
+          <h1>COMBINED PROJECTS</h1>
           <p className="lead">Hello There!</p>
         </div>
       </div>
@@ -30,73 +31,43 @@ export function HomePage() {
             </Card.Body>
           </Card>
         </div>
-        <h1>The Projects</h1>
-        <div className="card-wrapper">
-          <Card
-            bg="secondary"
-            text="light"
-            style={{ width: "18rem" }}
-            className="mb-2"
-          >
-            <Card.Header>Password Generator</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                With options to include character length, uppercase and
-                lowercase letters, numbers, and special characters, this tool
-                can generate strong and unique passwords that can slow down even
-                the most determined attackers. While it may not stop Mr. Robot,
-                it can definitely boost your online security.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card
-            bg="secondary"
-            text="light"
-            style={{ width: "18rem" }}
-            className="mb-2"
-          >
-            <Card.Header>Workday Scheduler</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                A scheduling app that enables users to plan out their day with
-                ease by saving their schedule to local storage. It offers a
-                user-friendly color-coded system, highlighting the current,
-                upcoming, and past hours for maximum organization.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card
-            bg="secondary"
-            text="light"
-            style={{ width: "18rem" }}
-            className="mb-2"
-          >
-            <Card.Header>Weather Forecast</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                User-friendly weather forecast app that provides both current
-                and 5-day forecasts. Stay on top of the weather and plan your
-                day with confidence and never be caught off guard by the weather
-                again.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card
-            bg="secondary"
-            text="light"
-            style={{ width: "18rem" }}
-            className="mb-2"
-          >
-            <Card.Header>React Quiz</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                A 10 question quiz on the React framework. You'll have 45
-                seconds to complete the quiz and your score will shown at the
-                end.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+        <h1 className="project-title">The Projects</h1>
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Password Generator</Accordion.Header>
+            <Accordion.Body>
+              With options to include character length, uppercase and lowercase
+              letters, numbers, and special characters, this tool can generate
+              strong and unique passwords that can slow down even the most
+              determined attackers. While it may not stop Mr. Robot, it can
+              definitely boost your online security.
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>Workday Scheduler</Accordion.Header>
+            <Accordion.Body>
+              A scheduling app that enables users to plan out their day with
+              ease by saving their schedule to local storage. It offers a
+              user-friendly color-coded system, highlighting the current,
+              upcoming, and past hours for maximum organization.
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header>Weather Forecast</Accordion.Header>
+            <Accordion.Body>
+              User-friendly weather forecast app that provides both current and
+              5-day forecasts. Stay on top of the weather and plan your day with
+              confidence and never be caught off guard by the weather again.
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="3">
+            <Accordion.Header>React Quiz</Accordion.Header>
+            <Accordion.Body>
+              A 10 question quiz on the React framework. You'll have 45 seconds
+              to complete the quiz and your score will shown at the end.
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </Container>
     </>
   );

@@ -14,7 +14,6 @@
 
   margin: 2px;
 }
-
 .header {
   width: 100%;
   text-align: center;
@@ -22,15 +21,19 @@
   color: white;
   background-image: linear-gradient(
     75deg,
-    #fb2bff56 0%,
-    #5f0fff54 52%,
-    #fb2bff56 100%,
-    #5f0fff4d 0%
+    #42238054 0%,
+    #8b1f8d56 20%,
+    #8b1f8d56 80%,
+    #42238054 100%
   );
 }
 
 .about-card {
   width: 80%;
+  margin: 40px;
+  background-color: #c102d350;
+  box-shadow: 0 0 2px 2px var(--border-purple);
+  color: var(--text-color);
 }
 
 .card-wrapper {
@@ -40,4 +43,11 @@
   flex-wrap: wrap;
   vertical-align: top !important;
   gap: 1rem;
+}
+
+.project {
+  background-color: #c102d350;
+  box-shadow: 0 0 2px 2px var(--border-purple);
+  color: var(--text-color);
+  width: 25%;
 }
