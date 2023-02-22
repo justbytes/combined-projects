@@ -1,5 +1,5 @@
 .header-border {
-  border: 2px double transparent;
+  border: 1px double transparent;
   background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
     radial-gradient(
       circle at left top,
@@ -20,12 +20,23 @@
   color: white;
   background-image: linear-gradient(
     75deg,
-    #42238054 0%,
-    #8b1f8d56 20%,
-    #8b1f8d56 80%,
-    #42238054 100%
+    #d60d3996 0%,
+    #8b1f8d56 40%,
+    #8b1f8d56 60%,
+    #d60d3996 100%
   );
 }
+
+.header-title {
+  font-family: "Phudu", cursive;
+  font-size: 60px;
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
+.lead {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
 .about-card {
   font-size: 24px;
   width: 80%;
@@ -34,20 +45,46 @@
   box-shadow: 0 0 2px 2px white;
   color: var(--text-color);
 }
+
+.the-projects {
+  width: 80%;
+}
+
+.the-projects.row h1 {
+  color: white;
+  font-family: "Phudu", cursive;
+  font-size: 50px;
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+
 .projects {
   width: 80%;
+}
+
+.accordion {
+  --bs-accordion-active-color: white;
+  --bs-accordion-btn-focus-border-color: none;
+  --bs-accordion-active-bg: white;
+  --bs-accordion-btn-focus-box-shadow: none;
 }
 
 div.accordion-item {
   background-color: #56505a36;
   color: white;
-  box-shadow: 0 0 2px 2px white;
+  box-shadow: 0 0 1px 1px white;
   font-size: 24px;
+  text-decoration: none !important;
+}
+
+.accordion-header {
+  background: #99929e00;
+  text-decoration: none !important;
 }
 
 button.accordion-button,
 button.accordion-button.collapsed {
-  background-color: #56505a36;
+  background: #56505a10 !important;
   color: var(--text-color);
   font-size: 24px;
+  text-decoration: none !important;
 }

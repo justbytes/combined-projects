@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
+import Row from "react-bootstrap/Row";
 
 import "../../style/HomePage.css";
 
@@ -10,7 +11,7 @@ export function HomePage() {
     <>
       <div className="header-border">
         <div className="header">
-          <h1>COMBINED PROJECTS</h1>
+          <h1 className="header-title">COMBINED PROJECTS</h1>
           <p className="lead">Hello There!</p>
         </div>
       </div>
@@ -22,16 +23,19 @@ export function HomePage() {
               <Card.Text>
                 After attending UCSD's Coding Bootcamp I was left with several
                 projects that required some refactoring. React is my favorite
-                frameworks so I decided to throw all these projects into one
-                mobile responsive, user-friendly and well polished React App.
-                There are some projects that didn't fit the metaphorical bill
-                but you can still check them out on my Github if your
-                interested.
+                front-end framework so I decided to throw all these projects
+                into a single user-friendly and well polished React App. There
+                are some projects that didn't fit the metaphorical bill but you
+                can still check them out on my Github if your interested.
               </Card.Text>
             </Card.Body>
           </Card>
         </div>
-        <h1 className="project-title">The Projects</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <Row className="the-projects">
+            <h1>The Projects</h1>
+          </Row>
+        </div>
         <div className="d-flex justify-content-center align-items-center">
           <Accordion className="projects" defaultActiveKey="0">
             <Accordion.Item eventKey="0">

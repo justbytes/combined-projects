@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,500;0,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Phudu:wght@500&family=Roboto+Condensed&display=swap");
 
 :root {
   --text-color: white;
@@ -20,7 +20,7 @@
 }
 
 body {
-  font-family: "Vollkorn", serif;
+  font-family: "Roboto Condensed", sans-serif;
   background: linear-gradient(170deg, #050505f5 0%, #181717 100%);
   background-image: url("../imgs/nothingToSeeHere.jpeg");
   background-repeat: no-repeat;
