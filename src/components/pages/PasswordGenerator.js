@@ -43,61 +43,77 @@ export function PasswordGenerator() {
   };
 
   return (
-    <Container fluid>
-      <header className="jumbotron">
-        <h1 className="display-3">Password Generator</h1>
-        <p className="lead">
-          This won't stop Mr. Robot but it will slow him down.
-        </p>
-      </header>
-      <Card>
-        <Card.Header>Generate a secure password</Card.Header>
-        <Card.Body>
-          <Form.Control
-            as="textarea"
-            value={password}
-            rows={3}
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-            readOnly
-          />
-          <Form.Label>Password length: {passwordLength}</Form.Label>
-          <Form.Range
-            min="8"
-            max="120"
-            step="1"
-            value={passwordLength}
-            onInput={handleRangeChange}
-          />
-          <Form.Check
-            type="checkbox"
-            label="Uppercase"
-            checked={uppercase}
-            onChange={(e) => setUppercase(e.target.checked)}
-          />
-          <Form.Check
-            type="checkbox"
-            label="Lowercase"
-            checked={lowercase}
-            onChange={(e) => setLowercase(e.target.checked)}
-          />
-          <Form.Check
-            type="checkbox"
-            label="Numbers"
-            checked={numbers}
-            onChange={(e) => setNumbers(e.target.checked)}
-          />
-          <Form.Check
-            type="checkbox"
-            label="Special Characters"
-            checked={specialCharacters}
-            onChange={(e) => setSpecialCharacters(e.target.checked)}
-          />
-        </Card.Body>
-        <Button id="generate" className="btn" onClick={generatePassword}>
-          Generate Password
-        </Button>
-      </Card>
-    </Container>
+    <>
+      <div className="header-border">
+        <div className="header">
+          <h1 className="header-title">Password Generator</h1>
+          <p className="lead">
+            This won't stop Mr. Robot but it will slow him down.
+          </p>
+        </div>
+      </div>
+      <Container fluid>
+        <div className="password-gen-background d-flex justify-content-center align-items-center">
+          <div className="password-gen-div d-flex justify-content-center align-items-center">
+            <Card className="password-gen-card">
+              <Card.Header className="password-gen-card-header">
+                Generate a secure password
+              </Card.Header>
+              <Card.Body>
+                <Form.Control
+                  as="textarea"
+                  value={password}
+                  rows={3}
+                  placeholder="Your Secure Password"
+                  aria-label="Generated Password"
+                  readOnly
+                />
+
+                <Form.Range
+                  className="password-options"
+                  min="8"
+                  max="120"
+                  step="1"
+                  value={passwordLength}
+                  onInput={handleRangeChange}
+                />
+                <Form.Label>Password length: {passwordLength}</Form.Label>
+                <Form.Check
+                  type="checkbox"
+                  label="Uppercase"
+                  checked={uppercase}
+                  onChange={(e) => setUppercase(e.target.checked)}
+                />
+                <Form.Check
+                  type="checkbox"
+                  label="Lowercase"
+                  checked={lowercase}
+                  onChange={(e) => setLowercase(e.target.checked)}
+                />
+                <Form.Check
+                  type="checkbox"
+                  label="Numbers"
+                  checked={numbers}
+                  onChange={(e) => setNumbers(e.target.checked)}
+                />
+                <Form.Check
+                  type="checkbox"
+                  label="Special Characters"
+                  checked={specialCharacters}
+                  onChange={(e) => setSpecialCharacters(e.target.checked)}
+                />
+              </Card.Body>
+              <Button
+                id="generate"
+                className="btn generate-button"
+                onClick={generatePassword}
+              >
+                Generate Password
+              </Button>
+            </Card>
+          </div>
+        </div>
+      </Container>
+    </>
   );
 }

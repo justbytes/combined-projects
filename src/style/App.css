@@ -1,24 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Phudu:wght@500&family=Roboto+Condensed&display=swap");
 
 :root {
-  --text-color: white;
-  /* header background colors */
-  --light-pink-transparent: #ff86ff31;
-  --pink-transparent: #fb2bff25;
-  --purple-transparent: #c102d32c;
-  --violet-transparent: #5f0fff27;
-  --blue-transparent: #1a05d91a;
-  /* main color theme */
-  --light-pink: #ff86ff;
-  --pink: #fd2bff;
-  --purple: #c202d3;
-  --violet: #5e0fff;
-  --blue: #1905d9;
   /* border colors */
   --border-blue: rgb(1, 110, 218);
   --border-purple: rgb(217, 0, 192);
 }
 
+/* Sets background image and font for text */
 body {
   font-family: "Roboto Condensed", sans-serif;
   background: linear-gradient(170deg, #050505f5 0%, #181717 100%);
@@ -27,7 +15,45 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+/* End of body styling */
 
+/* Styling for headers on all pages */
+.header-border {
+  border: 1px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 var(--border-purple);
+  animation: glow 3s ease-in-out infinite;
+  margin-top: 5px;
+}
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  background-image: linear-gradient(
+    75deg,
+    #d60d3996 0%,
+    #8b1f8d56 40%,
+    #8b1f8d56 60%,
+    #d60d3996 100%
+  );
+}
+.header-title {
+  font-family: "Phudu", cursive;
+  font-size: 60px;
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
+}
+.lead {
+  font-family: "Roboto Condensed", sans-serif;
+}
 @keyframes glow {
   0% {
     box-shadow: 0 0 10px 5px var(--border-purple);
@@ -39,3 +65,4 @@ body {
     box-shadow: 0 0 10px 5px var(--border-purple);
   }
 }
+/* End of styling for headers for pages */

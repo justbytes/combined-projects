@@ -18,7 +18,9 @@ export function HomePage() {
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center">
           <Card className="about-card">
-            <Card.Header as="h5">About this project</Card.Header>
+            <Card.Header className="about-card-header">
+              About this project
+            </Card.Header>
             <Card.Body>
               <Card.Text>
                 After attending UCSD's Coding Bootcamp I was left with several

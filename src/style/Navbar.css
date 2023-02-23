@@ -1,9 +1,11 @@
-/* Styling for actual navbar */
+/* Styling for navbar container */
 .navbar-container {
   font-size: 18px;
   background: black;
   box-shadow: inset 5px 5px 25px 5px #3e3c41, 5px 5px 12px 2px black;
 }
+/* End of styling for navbar container */
+
 /* Sets brand name text size and glow effect */
 a.brand-name {
   font-size: 24px;
@@ -40,7 +42,6 @@ a.nav-link:hover {
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
-
 /* End Nav Links*/
 
 /* When navbar is collapsed */
@@ -52,7 +53,11 @@ button.navbar-toggler:hover,
 button.navbar-toggler.collapsed:hover {
   border: 2px double transparent;
   background-image: linear-gradient(rgb(231, 231, 231), rgb(235, 235, 235)),
-    radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
