@@ -61,6 +61,7 @@ export function PasswordGenerator() {
               </Card.Header>
               <Card.Body>
                 <Form.Control
+                  className="form-control-password-gen"
                   as="textarea"
                   value={password}
                   rows={3}
@@ -77,7 +78,9 @@ export function PasswordGenerator() {
                   value={passwordLength}
                   onInput={handleRangeChange}
                 />
-                <Form.Label>Password length: {passwordLength}</Form.Label>
+                <Form.Label className="password-length-indicator">
+                  Password length: {passwordLength}
+                </Form.Label>
                 <Form.Check
                   type="checkbox"
                   label="Uppercase"

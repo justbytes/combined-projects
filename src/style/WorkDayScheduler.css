@@ -1,10 +1,29 @@
+#currentDay {
+  font-family: "Phudu", cursive;
+}
+
+.workday-background {
+  background-image: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(26, 24, 24) 50%);
+  box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582), 0 0 1px 1px white;
+  border-radius: 10px;
+  margin: 40px;
+
+  height: 80%;
+}
+
+.workday-div {
+  width: 90%;
+  padding: 15px;
+}
+
 textarea {
-  background: transparent;
-  border: none;
-  resize: none;
+  background: #8c82922a !important;
+  box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582);
   color: #000000;
-  border-left: 1px solid black;
   padding: 10px;
+  height: 7rem;
+  text-align: left !important;
+  text-decoration: none !important;
 }
 
 .form-control {
@@ -21,14 +40,8 @@ textarea {
   margin-top: 15px;
 }
 
-/* .row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
-} */
-
 .hour {
-  background-color: #ffffff;
+  background-color: #aa1313ad;
   color: #000000;
   border-top: 1px dashed #000000;
 }
@@ -52,15 +65,29 @@ textarea {
 }
 
 .saveBtn {
-  background-color: #06aed5;
+  font-family: "Phudu", cursive;
   color: white;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+  background-color: #b144faee;
+  --bs-btn-border-color: none;
+  --bs-btn-hover-bg: none;
+  box-shadow: inset 0 0 25px rgba(31, 30, 30, 0.596);
+  height: 3rem;
 }
 
-.saveBtn i:hover {
+.saveBtn:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+  border: 3px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 .notification {
