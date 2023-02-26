@@ -3,24 +3,81 @@
   background-image: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(26, 24, 24) 50%);
   box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582), 0 0 1px 1px white;
   border-radius: 10px;
-  margin: 10px;
+  margin: 30px;
+}
+
+.search-field {
+  padding: 10px;
+  justify-content: center;
 }
 
 div.weather-div {
   width: 100%;
-  padding: 15px;
+
   display: flex;
   flex-wrap: wrap;
+}
+
+.card {
+  background-color: #813daf33;
+  color: white;
+  box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.466), 0 0 1px white;
+  box-shadow: inset 0 0 50px rgba(114, 48, 48, 0.24), 0 0 1px 1px white;
+}
+
+.card-header {
+  font-family: "Phudu", cursive;
+}
+
+.card-title {
+  margin: auto;
+  font-family: "Phudu", cursive;
+  padding: 10px;
+}
+
+.list-group-item {
+  background-color: #2f11425e;
+  color: white;
+  margin: 2px;
+  border-radius: 5px;
+  box-shadow: 0 0 1px white;
+}
+
+.list-group-flush {
+  border-radius: 5px;
 }
 
 .current-day-div {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.current-day-title {
+  margin-left: 5px;
+  width: 21%;
+  color: white;
+  font-family: "Phudu", cursive;
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
 }
 
 .current-day-card {
-  width: 80% !important;
+  width: 77% !important;
+}
+
+.five-day-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.five-day-title {
+  width: 100%;
+  color: white;
+  font-family: "Phudu", cursive;
+  text-shadow: 0 0 80px rgb(192 219 255 / 75%), 0 0 32px rgb(65 120 255 / 24%);
 }
 
 .dayOneForecast,
@@ -39,6 +96,12 @@ div.weather-div {
   .dayFourForecast,
   .dayFiveForecast {
     min-width: 400px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .current-day-title {
+    display: none;
   }
 }
 
