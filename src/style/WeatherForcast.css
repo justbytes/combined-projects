@@ -1,0 +1,53 @@
+.weather-background {
+  flex-wrap: wrap;
+  background-image: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(26, 24, 24) 50%);
+  box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582), 0 0 1px 1px white;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+div.weather-div {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.current-day-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.current-day-card {
+  width: 80% !important;
+}
+
+.dayOneForecast,
+.dayTwoForecast,
+.dayThreeForecast,
+.dayFourForecast,
+.dayFiveForecast {
+  margin: 5px;
+  width: 19%;
+}
+
+@media screen and (max-width: 1050px) {
+  .dayOneForecast,
+  .dayTwoForecast,
+  .dayThreeForecast,
+  .dayFourForecast,
+  .dayFiveForecast {
+    min-width: 400px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dayOneForecast,
+  .dayTwoForecast,
+  .dayThreeForecast,
+  .dayFourForecast,
+  .dayFiveForecast {
+    min-width: 200px;
+  }
+}

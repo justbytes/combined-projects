@@ -17,6 +17,9 @@ import Col from "react-bootstrap/Col";
 //Get api key from secret.js
 import { API_KEY } from "../../secret";
 
+//Import style
+import "../../style/WeatherForcast.css";
+
 export function WeatherForecast() {
   //Set state variables
   const [cityName, setCityName] = useState("San Diego");
@@ -133,312 +136,346 @@ export function WeatherForecast() {
   };
 
   return (
-    <Container fluid>
-      <header className="jumbotron">
-        <h1 className="display-3">Weather forecast</h1>
-        <p className="lead">
-          Forecast for {cityName}, {stateName}.
-        </p>
-      </header>
-      {/* Search city name and state code to get forecast */}
-      <Form>
-        <Row className="align-items-center">
-          <Col sm={3} className="my-1">
-            <Form.Label
-              htmlFor="inlineFormInputName"
-              visuallyHidden
-            ></Form.Label>
-            <Form.Control
-              id="inlineFormInputName"
-              className="cityName"
-              placeholder="San Diego"
-            />
-          </Col>
-          <Col sm={3} className="my-1">
-            <Form.Label
-              htmlFor="inlineFormInputGroupUsername"
-              visuallyHidden
-            ></Form.Label>
-            <InputGroup>
-              <Form.Control
-                id="inlineFormInputGroupUsername"
-                className="stateName"
-                placeholder="CA"
-              />
-            </InputGroup>
-          </Col>
-          <Col xs="auto" className="my-1">
-            <Button onClick={() => handleSearch()}>Search</Button>
-          </Col>
-        </Row>
-      </Form>
-      {/* Displays current weather conditions */}
-      <Card className="currentDayForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(currentWeatherForecast.date).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {currentWeatherForecast.description}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${currentWeatherForecast.icon}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong>{" "}
-              {currentWeatherForecast.temp + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {currentWeatherForecast.feelsLike + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {currentWeatherForecast.humidity + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong>{" "}
-              {currentWeatherForecast.tempMax + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong>{" "}
-              {currentWeatherForecast.tempMin + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {currentWeatherForecast.windSpeed + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {currentWeatherForecast.windDirection + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      {/* Displays day 1 of 5 day forecast */}
-      <Card className="dayOneForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(weatherForecastData.date0).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {weatherForecastData.description0}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherForecastData.icon0}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong> {weatherForecastData.temp0 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {weatherForecastData.feelsLike0 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {weatherForecastData.humidity0 + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong> {weatherForecastData.tempMax0 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong> {weatherForecastData.tempMin0 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {weatherForecastData.windSpeed0 + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {weatherForecastData.windDirection0 + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      {/* Displays day 2 of 5 day forecast */}
-      <Card className="dayTwoForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(weatherForecastData.date1).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {weatherForecastData.description1}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherForecastData.icon1}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong> {weatherForecastData.temp1 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {weatherForecastData.feelsLike1 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {weatherForecastData.humidity1 + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong> {weatherForecastData.tempMax1 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong> {weatherForecastData.tempMin1 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {weatherForecastData.windSpeed1 + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {weatherForecastData.windDirection1 + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      {/* Displays day 3 of 5 day forecast */}
-      <Card className="dayThreeForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(weatherForecastData.date2).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {weatherForecastData.description2}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherForecastData.icon2}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong> {weatherForecastData.temp2 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {weatherForecastData.feelsLike2 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {weatherForecastData.humidity2 + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong> {weatherForecastData.tempMax2 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong> {weatherForecastData.tempMin2 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {weatherForecastData.windSpeed2 + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {weatherForecastData.windDirection2 + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      {/* Displays day 4 of 5 day forecast */}
-      <Card className="dayFourForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(weatherForecastData.date3).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {weatherForecastData.description3}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherForecastData.icon3}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong> {weatherForecastData.temp3 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {weatherForecastData.feelsLike3 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {weatherForecastData.humidity3 + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong> {weatherForecastData.tempMax3 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong> {weatherForecastData.tempMin3 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {weatherForecastData.windSpeed3 + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {weatherForecastData.windDirection3 + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      {/* Displays day 5 of 5 day forecast */}
-      <Card className="dayFiveForecast" style={{ width: "100%" }}>
-        <Card.Header>
-          {moment(weatherForecastData.date4).format("MM/DD/YYYY")}
-        </Card.Header>
-        <Card.Title>
-          <strong className="card-description">
-            {weatherForecastData.description4}
-          </strong>{" "}
-          <br />
-          <img
-            src={`http://openweathermap.org/img/wn/${weatherForecastData.icon4}@2x.png`}
-            alt="Weather icon"
-          />
-        </Card.Title>
-        <Card.Body style={{ minHeight: "10rem" }}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <strong>Actual Temp:</strong> {weatherForecastData.temp4 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Feels Like Temp:</strong>{" "}
-              {weatherForecastData.feelsLike4 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Humidity:</strong> {weatherForecastData.humidity4 + "%"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Max Temp:</strong> {weatherForecastData.tempMax4 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Min Temp:</strong> {weatherForecastData.tempMin3 + " °F"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Speed:</strong>{" "}
-              {weatherForecastData.windSpeed4 + " mph"}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Wind Direction:</strong>{" "}
-              {weatherForecastData.windDirection4 + "°"}
-            </ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-    </Container>
+    <>
+      <div className="header-border">
+        <div className="header">
+          <h1 className="header-title">Weather Forecast</h1>
+          <p className="lead">
+            Forecast for {cityName}, {stateName}.
+          </p>
+        </div>
+      </div>
+      <Container fluid>
+        <div className="weather-background ">
+          {/* Search city name and state code to get forecast */}
+          <div className="search-div">
+            <Form>
+              <Row>
+                <Col sm={3} className="my-1">
+                  <Form.Label
+                    htmlFor="inlineFormInputName"
+                    visuallyHidden
+                  ></Form.Label>
+                  <Form.Control
+                    id="inlineFormInputName"
+                    className="cityName"
+                    placeholder="San Diego"
+                  />
+                </Col>
+                <Col sm={3} className="my-1">
+                  <Form.Label
+                    htmlFor="inlineFormInputGroupUsername"
+                    visuallyHidden
+                  ></Form.Label>
+                  <InputGroup>
+                    <Form.Control
+                      id="inlineFormInputGroupUsername"
+                      className="stateName"
+                      placeholder="CA"
+                    />
+                  </InputGroup>
+                </Col>
+                <Col xs="auto" className="my-1">
+                  <Button onClick={() => handleSearch()}>Search</Button>
+                </Col>
+              </Row>
+            </Form>
+          </div>
+          <div className="weather-div">
+            {/* Displays current weather conditions */}
+            <div className="current-day-div">
+              <Card className="current-day-card">
+                <Card.Header>
+                  {moment(currentWeatherForecast.date).format("MM/DD/YYYY")}
+                </Card.Header>
+                <Card.Title>
+                  <strong className="card-description">
+                    {currentWeatherForecast.description}
+                  </strong>{" "}
+                  <br />
+                  <img
+                    src={`http://openweathermap.org/img/wn/${currentWeatherForecast.icon}@2x.png`}
+                    alt="Weather icon"
+                  />
+                </Card.Title>
+                <Card.Body>
+                  <ListGroup variant="flush">
+                    <ListGroup.Item>
+                      <strong>Actual Temp:</strong>{" "}
+                      {currentWeatherForecast.temp + " °F"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Feels Like Temp:</strong>{" "}
+                      {currentWeatherForecast.feelsLike + " °F"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Humidity:</strong>{" "}
+                      {currentWeatherForecast.humidity + "%"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Max Temp:</strong>{" "}
+                      {currentWeatherForecast.tempMax + " °F"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Min Temp:</strong>{" "}
+                      {currentWeatherForecast.tempMin + " °F"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Wind Speed:</strong>{" "}
+                      {currentWeatherForecast.windSpeed + " mph"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <strong>Wind Direction:</strong>{" "}
+                      {currentWeatherForecast.windDirection + "°"}
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Card.Body>
+              </Card>
+            </div>
+
+            {/* Displays day 1 of 5 day forecast */}
+            <Card className="dayOneForecast">
+              <Card.Header>
+                {moment(weatherForecastData.date0).format("MM/DD/YYYY")}
+              </Card.Header>
+              <Card.Title>
+                <strong className="card-description">
+                  {weatherForecastData.description0}
+                </strong>{" "}
+                <br />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weatherForecastData.icon0}@2x.png`}
+                  alt="Weather icon"
+                />
+              </Card.Title>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <strong>Actual Temp:</strong>{" "}
+                    {weatherForecastData.temp0 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Feels Like Temp:</strong>{" "}
+                    {weatherForecastData.feelsLike0 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Humidity:</strong>{" "}
+                    {weatherForecastData.humidity0 + "%"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Max Temp:</strong>{" "}
+                    {weatherForecastData.tempMax0 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Min Temp:</strong>{" "}
+                    {weatherForecastData.tempMin0 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Speed:</strong>{" "}
+                    {weatherForecastData.windSpeed0 + " mph"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Direction:</strong>{" "}
+                    {weatherForecastData.windDirection0 + "°"}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+            {/* Displays day 2 of 5 day forecast */}
+            <Card className="dayTwoForecast">
+              <Card.Header>
+                {moment(weatherForecastData.date1).format("MM/DD/YYYY")}
+              </Card.Header>
+              <Card.Title>
+                <strong className="card-description">
+                  {weatherForecastData.description1}
+                </strong>{" "}
+                <br />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weatherForecastData.icon1}@2x.png`}
+                  alt="Weather icon"
+                />
+              </Card.Title>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <strong>Actual Temp:</strong>{" "}
+                    {weatherForecastData.temp1 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Feels Like Temp:</strong>{" "}
+                    {weatherForecastData.feelsLike1 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Humidity:</strong>{" "}
+                    {weatherForecastData.humidity1 + "%"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Max Temp:</strong>{" "}
+                    {weatherForecastData.tempMax1 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Min Temp:</strong>{" "}
+                    {weatherForecastData.tempMin1 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Speed:</strong>{" "}
+                    {weatherForecastData.windSpeed1 + " mph"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Direction:</strong>{" "}
+                    {weatherForecastData.windDirection1 + "°"}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+            {/* Displays day 3 of 5 day forecast */}
+            <Card className="dayThreeForecast">
+              <Card.Header>
+                {moment(weatherForecastData.date2).format("MM/DD/YYYY")}
+              </Card.Header>
+              <Card.Title>
+                <strong className="card-description">
+                  {weatherForecastData.description2}
+                </strong>{" "}
+                <br />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weatherForecastData.icon2}@2x.png`}
+                  alt="Weather icon"
+                />
+              </Card.Title>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <strong>Actual Temp:</strong>{" "}
+                    {weatherForecastData.temp2 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Feels Like Temp:</strong>{" "}
+                    {weatherForecastData.feelsLike2 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Humidity:</strong>{" "}
+                    {weatherForecastData.humidity2 + "%"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Max Temp:</strong>{" "}
+                    {weatherForecastData.tempMax2 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Min Temp:</strong>{" "}
+                    {weatherForecastData.tempMin2 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Speed:</strong>{" "}
+                    {weatherForecastData.windSpeed2 + " mph"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Direction:</strong>{" "}
+                    {weatherForecastData.windDirection2 + "°"}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+            {/* Displays day 4 of 5 day forecast */}
+            <Card className="dayFourForecast">
+              <Card.Header>
+                {moment(weatherForecastData.date3).format("MM/DD/YYYY")}
+              </Card.Header>
+              <Card.Title>
+                <strong className="card-description">
+                  {weatherForecastData.description3}
+                </strong>{" "}
+                <br />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weatherForecastData.icon3}@2x.png`}
+                  alt="Weather icon"
+                />
+              </Card.Title>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <strong>Actual Temp:</strong>{" "}
+                    {weatherForecastData.temp3 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Feels Like Temp:</strong>{" "}
+                    {weatherForecastData.feelsLike3 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Humidity:</strong>{" "}
+                    {weatherForecastData.humidity3 + "%"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Max Temp:</strong>{" "}
+                    {weatherForecastData.tempMax3 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Min Temp:</strong>{" "}
+                    {weatherForecastData.tempMin3 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Speed:</strong>{" "}
+                    {weatherForecastData.windSpeed3 + " mph"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Direction:</strong>{" "}
+                    {weatherForecastData.windDirection3 + "°"}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+            {/* Displays day 5 of 5 day forecast */}
+            <Card className="dayFiveForecast">
+              <Card.Header>
+                {moment(weatherForecastData.date4).format("MM/DD/YYYY")}
+              </Card.Header>
+              <Card.Title>
+                <strong className="card-description">
+                  {weatherForecastData.description4}
+                </strong>{" "}
+                <br />
+                <img
+                  src={`http://openweathermap.org/img/wn/${weatherForecastData.icon4}@2x.png`}
+                  alt="Weather icon"
+                />
+              </Card.Title>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <strong>Actual Temp:</strong>{" "}
+                    {weatherForecastData.temp4 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Feels Like Temp:</strong>{" "}
+                    {weatherForecastData.feelsLike4 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Humidity:</strong>{" "}
+                    {weatherForecastData.humidity4 + "%"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Max Temp:</strong>{" "}
+                    {weatherForecastData.tempMax4 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Min Temp:</strong>{" "}
+                    {weatherForecastData.tempMin3 + " °F"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Speed:</strong>{" "}
+                    {weatherForecastData.windSpeed4 + " mph"}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <strong>Wind Direction:</strong>{" "}
+                    {weatherForecastData.windDirection4 + "°"}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+      </Container>
+    </>
   );
 }

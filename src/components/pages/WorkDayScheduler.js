@@ -17,6 +17,8 @@ export function WorkDayScheduler() {
   const [currentHour, setCurrentHour] = useState(moment().hours());
   const [showNotification, setShowNotification] = useState(false);
 
+  console.log(currentHour);
+
   //Update hour via moment
   useEffect(() => {
     const hourUpdater = () => {

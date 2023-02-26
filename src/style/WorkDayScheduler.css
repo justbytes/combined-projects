@@ -76,6 +76,7 @@ textarea {
   height: 3rem;
 }
 
+.saveBtn:active,
 .saveBtn:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
