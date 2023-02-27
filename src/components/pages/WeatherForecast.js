@@ -191,7 +191,7 @@ export function WeatherForecast() {
 
             <div className="current-day-div">
               <h1 className="current-day-title">Todays Weather</h1>
-              <Card className="current-day-card">
+              <Card className="current-day-card cards">
                 <Card.Header>
                   {moment(currentWeatherForecast.date).format("MM/DD/YYYY")}
                 </Card.Header>
@@ -242,7 +242,7 @@ export function WeatherForecast() {
             <div className="five-day-div">
               <h1 className="five-day-title">Five Day Forecast</h1>
               {/* Displays day 1 of 5 day forecast */}
-              <Card className="dayOneForecast">
+              <Card className="dayOneForecast cards">
                 <Card.Header>
                   {moment(weatherForecastData.date0).format("MM/DD/YYYY")}
                 </Card.Header>
@@ -290,7 +290,7 @@ export function WeatherForecast() {
                 </Card.Body>
               </Card>
               {/* Displays day 2 of 5 day forecast */}
-              <Card className="dayTwoForecast">
+              <Card className="dayTwoForecast cards">
                 <Card.Header>
                   {moment(weatherForecastData.date1).format("MM/DD/YYYY")}
                 </Card.Header>
@@ -338,7 +338,7 @@ export function WeatherForecast() {
                 </Card.Body>
               </Card>
               {/* Displays day 3 of 5 day forecast */}
-              <Card className="dayThreeForecast">
+              <Card className="dayThreeForecast cards">
                 <Card.Header>
                   {moment(weatherForecastData.date2).format("MM/DD/YYYY")}
                 </Card.Header>
@@ -386,7 +386,7 @@ export function WeatherForecast() {
                 </Card.Body>
               </Card>
               {/* Displays day 4 of 5 day forecast */}
-              <Card className="dayFourForecast">
+              <Card className="dayFourForecast cards">
                 <Card.Header>
                   {moment(weatherForecastData.date3).format("MM/DD/YYYY")}
                 </Card.Header>
@@ -434,7 +434,7 @@ export function WeatherForecast() {
                 </Card.Body>
               </Card>
               {/* Displays day 5 of 5 day forecast */}
-              <Card className="dayFiveForecast">
+              <Card className="dayFiveForecast cards ">
                 <Card.Header>
                   {moment(weatherForecastData.date4).format("MM/DD/YYYY")}
                 </Card.Header>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //Import react bootstrap components
-import Container from "react-bootstrap/Container";
+
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
@@ -132,7 +132,7 @@ export function CodingQuiz() {
   const handleStartClick = () => {
     setGameScreen("show");
     setStartScreen("hidden");
-    setTime(45); // set initial time
+    setTime(45000); // set initial time
 
     const timer = setInterval(() => {
       setTime((time) => time - 1); // decrement time every second
@@ -163,102 +163,113 @@ export function CodingQuiz() {
   };
 
   return (
-    <Container fluid>
-      <header className="jumbotron">
+    <>
+      <div className="header-border">
         {showConfetti && <Confetti />}
-        <h1 className="display-3">React.JS Quiz</h1>
-        <p className="lead">Test your React knowledge</p>
-        <Row className={`scoreRow ${gameScreen}`}>
-          <div id="timer">{time}</div>
-        </Row>
-      </header>
+        <div className="header">
+          <h1 className="header-title">React.JS Quiz</h1>
+          <p className="lead">Test your React knowledge</p>
+          <Row className={`scoreRow ${gameScreen}`}>
+            <div id="timer">{time}</div>
+          </Row>
+        </div>
+      </div>
       {/* Initial starting screen displaying instructions to user */}
-      <Card className={`instructions ${startScreen}`}>
-        <Card.Header>Are you ready?</Card.Header>
-        <Card.Body>
-          <Card.Title>Instructions</Card.Title>
-          <Card.Text>
-            You have 45 seconds to complete a 10 question quiz about the
-            React.js framework. <br />
-            Your score will be displayed after answering all the questions.{" "}
-            <br />
-            Good Luck!
-          </Card.Text>
-          <Button onClick={handleStartClick} className="primary">
-            Start
-          </Button>
-        </Card.Body>
-        {/* After start button is clicked it will display question and answers */}
-      </Card>
-      <Card className={`questions ${gameScreen}`}>
-        <Card.Title>
-          <h3>Question:</h3>
-        </Card.Title>
-        <Card.Body>
-          <Row>
-            <span className="question">
-              {questions[currentQuestion].question}
-            </span>
-          </Row>
-        </Card.Body>
-      </Card>
-      <Card className={`choices ${gameScreen}`}>
-        <Card.Title>
-          <h3>Choices:</h3>
-        </Card.Title>
-        <Card.Body>
-          <Row>
-            <Button
-              className="option"
-              data-option={questions[currentQuestion].options[0]}
-              data-answer={questions[currentQuestion].answer}
-              onClick={handleOptionClick}
-            >
-              {questions[currentQuestion].options[0]}
+      <div className={`start-screen ${startScreen}`}>
+        <Card className={`instructions ${startScreen}`}>
+          <Card.Header>Are you ready?</Card.Header>
+          <Card.Body>
+            <Card.Title>Instructions</Card.Title>
+            <Card.Text>
+              You have 45 seconds to complete a 10 question quiz about the
+              React.js framework.
+              <br />
+              Your score will be displayed after answering all the questions.{" "}
+              <br />
+              Good Luck!
+            </Card.Text>
+            <Button className="start-quiz-button" onClick={handleStartClick}>
+              Start
             </Button>
-          </Row>
-          <Row>
-            <Button
-              className="option"
-              data-option={questions[currentQuestion].options[1]}
-              data-answer={questions[currentQuestion].answer}
-              onClick={handleOptionClick}
-            >
-              {questions[currentQuestion].options[1]}
+          </Card.Body>
+          {/* After start button is clicked it will display question and answers */}
+        </Card>
+      </div>
+      <div className={`quiz-screen ${gameScreen}`}>
+        <Card className={`questions ${gameScreen}`}>
+          <Card.Title>
+            <h3>Question:</h3>
+          </Card.Title>
+          <Card.Body>
+            <Row>
+              <span className="question">
+                {questions[currentQuestion].question}
+              </span>
+            </Row>
+          </Card.Body>
+        </Card>
+        <Card className={`choices ${gameScreen}`}>
+          <Card.Title>
+            <h3>Choices:</h3>
+          </Card.Title>
+          <Card.Body>
+            <Row>
+              <Button
+                className="option"
+                data-option={questions[currentQuestion].options[0]}
+                data-answer={questions[currentQuestion].answer}
+                onClick={handleOptionClick}
+              >
+                {questions[currentQuestion].options[0]}
+              </Button>
+            </Row>
+            <Row>
+              <Button
+                className="option"
+                data-option={questions[currentQuestion].options[1]}
+                data-answer={questions[currentQuestion].answer}
+                onClick={handleOptionClick}
+              >
+                {questions[currentQuestion].options[1]}
+              </Button>
+            </Row>
+            <Row>
+              <Button
+                className="option"
+                data-option={questions[currentQuestion].options[2]}
+                data-answer={questions[currentQuestion].answer}
+                onClick={handleOptionClick}
+              >
+                {questions[currentQuestion].options[2]}
+              </Button>
+            </Row>
+            <Row>
+              <Button
+                className="option"
+                data-option={questions[currentQuestion].options[3]}
+                data-answer={questions[currentQuestion].answer}
+                onClick={handleOptionClick}
+              >
+                {questions[currentQuestion].options[3]}
+              </Button>
+            </Row>
+          </Card.Body>
+        </Card>
+      </div>
+      <div className={`score-screen ${scoreBoard}`}>
+        {/* After quiz is finished it will display the scoreboard and trigger animation */}
+        <Card className={`scoreBoard ${scoreBoard}`}>
+          <Card.Title>
+            <h3>Your Results</h3>
+          </Card.Title>
+          <Card.Body>
+            <h5>{score}</h5>
+            <Button onClick={() => window.location.reload(false)}>
+              Retest
             </Button>
-          </Row>
-          <Row>
-            <Button
-              className="option"
-              data-option={questions[currentQuestion].options[2]}
-              data-answer={questions[currentQuestion].answer}
-              onClick={handleOptionClick}
-            >
-              {questions[currentQuestion].options[2]}
-            </Button>
-          </Row>
-          <Row>
-            <Button
-              className="option"
-              data-option={questions[currentQuestion].options[3]}
-              data-answer={questions[currentQuestion].answer}
-              onClick={handleOptionClick}
-            >
-              {questions[currentQuestion].options[3]}
-            </Button>
-          </Row>
-        </Card.Body>
-      </Card>
-      {/* After quiz is finished it will display the scoreboard and trigger animation */}
-      <Card className={`scoreBoard ${scoreBoard}`}>
-        <Card.Title>
-          <h3>Your Results</h3>
-        </Card.Title>
-        <Card.Body>
-          <h5>{score}</h5>
-          <Button onClick={() => window.location.reload(false)}>Retest</Button>
-        </Card.Body>
-      </Card>
-    </Container>
+          </Card.Body>
+        </Card>
+      </div>
+    </>
   );
 }

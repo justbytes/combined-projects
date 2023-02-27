@@ -1,3 +1,74 @@
 .hidden {
   display: none;
 }
+
+.start-screen {
+  justify-content: center;
+  margin: 40px;
+}
+
+.instructions.show.card {
+  font-size: 20px;
+  color: white;
+  background-color: #3c1357e1;
+  box-shadow: inset 0 0 50px rgba(204, 190, 190, 0.692),
+    0 0 5px 1px rgba(255, 255, 255, 0.733), 0 0 2px white;
+}
+
+.start-quiz-button {
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.quiz-screen.show {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
+.choices.show.card,
+.questions.show.card {
+  font-size: 24px;
+  color: white;
+  background-image: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(26, 24, 24) 50%);
+  box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582), 0 0 1px 1px white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  width: 50rem;
+  height: 20rem;
+  margin: 10px;
+}
+
+.option {
+  margin: 5px;
+  font-size: 20px;
+  background-color: #b144fa70;
+  box-shadow: inset 0 0 25px rgba(173, 43, 156, 0.582);
+  border: black solid 1px;
+}
+
+.option:hover {
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    radial-gradient(
+      circle at left top,
+      var(--border-blue),
+      var(--border-purple)
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+@media screen and (max-width: 600px) {
+  .quiz-screen.show {
+    flex-wrap: wrap;
+  }
+}
