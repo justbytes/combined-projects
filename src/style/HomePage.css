@@ -3,7 +3,7 @@
   font-size: 24px;
   width: 80%;
   margin: 40px;
-  background-color: #56505a36;
+  background-color: #56505a85 !important;
   box-shadow: 0 0 2px 2px white;
   color: white;
 }
@@ -36,7 +36,7 @@
   --bs-accordion-btn-focus-box-shadow: none;
 }
 div.accordion-item {
-  background-color: #56505a36;
+  background-color: #56505a71;
   color: white;
   box-shadow: 0 0 1px 1px white;
   font-size: 24px;

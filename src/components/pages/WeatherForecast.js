@@ -176,7 +176,12 @@ export function WeatherForecast() {
                   </InputGroup>
                 </Col>
                 <Col xs="auto" className="my-1">
-                  <Button onClick={() => handleSearch()}>Search</Button>
+                  <Button
+                    className="search-location-btn"
+                    onClick={() => handleSearch()}
+                  >
+                    Search
+                  </Button>
                 </Col>
               </Row>
             </Form>
