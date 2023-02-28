@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
 //Import react bootstrap components
-
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-
-//Import react animation
-import Confetti from "react-confetti";
 
 //Import styling
 import "../../style/CodingQuiz.css";
@@ -20,7 +16,6 @@ export function CodingQuiz() {
   const [scoreBoard, setScoreBoard] = useState("hidden");
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(45);
-  const [showConfetti, setShowConfetti] = useState(false);
 
   //Quiz questions, choices, and answers
   const questions = [
@@ -158,14 +153,12 @@ export function CodingQuiz() {
     } else {
       setGameScreen("hidden");
       setScoreBoard("show");
-      setShowConfetti(true);
     }
   };
 
   return (
     <>
       <div className="header-border">
-        {showConfetti && <Confetti />}
         <div className="header">
           <h1 className="header-title">React.JS Quiz</h1>
           <p className="lead">Test your React knowledge</p>
@@ -175,7 +168,9 @@ export function CodingQuiz() {
         </div>
       </div>
       {/* Initial starting screen displaying instructions to user */}
-      <div className={`start-screen ${startScreen}`}>
+      <div
+        className={`d-flex justify-content-center align-items-center start-screen ${startScreen}`}
+      >
         <Card className={`instructions ${startScreen}`}>
           <Card.Header>Are you ready?</Card.Header>
           <Card.Body>
@@ -256,15 +251,20 @@ export function CodingQuiz() {
           </Card.Body>
         </Card>
       </div>
-      <div className={`score-screen ${scoreBoard}`}>
+      <div
+        className={`d-flex justify-content-center align-items-center start-screen score-screen ${scoreBoard}`}
+      >
         {/* After quiz is finished it will display the scoreboard and trigger animation */}
         <Card className={`scoreBoard ${scoreBoard}`}>
           <Card.Title>
             <h3>Your Results</h3>
           </Card.Title>
           <Card.Body>
-            <h5>{score}</h5>
-            <Button onClick={() => window.location.reload(false)}>
+            <h5 className="results">{score} answers correct.</h5>
+            <Button
+              className="start-quiz-button"
+              onClick={() => window.location.reload(false)}
+            >
               Retest
             </Button>
           </Card.Body>
