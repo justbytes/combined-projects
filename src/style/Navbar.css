@@ -30,6 +30,7 @@ a.nav-link,
 a.dropdown-toggle.show.nav-link {
   color: white;
 }
+
 a.nav-link:hover {
   color: white;
   border: 2px double transparent;
@@ -61,4 +62,18 @@ button.navbar-toggler.collapsed:hover {
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+
+.navbar-nav {
+  align-items: baseline;
+}
+
 /* End of navbar collapsed */
+
+/* Sets list items to the left when navbar is collapsed */
+@media screen and (max-width: 995px) {
+  a.nav-link,
+  a.dropdown-toggle.show.nav-link {
+    color: white;
+    width: 200px;
+  }
+}

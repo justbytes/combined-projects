@@ -1,3 +1,4 @@
+/* Background for cards */
 .weather-background {
   flex-wrap: wrap;
   background-image: linear-gradient(0deg, rgb(8, 8, 8) 0%, rgb(26, 24, 24) 50%);
@@ -6,6 +7,13 @@
   margin: 30px;
 }
 
+.current-day-title,
+.five-day-title {
+  margin: 5px;
+  padding: 15px;
+}
+
+/* Start of styling for search features */
 .search-field {
   padding: 10px;
   justify-content: center;
@@ -44,19 +52,17 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
 }
+/* End of styling for search features */
 
+/* Start of styling for weather forecast content */
 div.weather-div {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.current-day-title,
-.five-day-title {
-  margin: 5px;
-  padding: 15px;
-}
-
+/* Start of styling for weather cards */
+/* Start of base styling for all cards */
 .cards {
   background-color: #521b7757;
   color: white;
@@ -85,7 +91,9 @@ div.weather-div {
 .list-group-flush {
   border-radius: 5px;
 }
+/* End of base styling for all cards */
 
+/* Specific styling for current day card */
 .current-day-div {
   width: 100%;
   display: flex;
@@ -105,6 +113,7 @@ div.weather-div {
   width: 80% !important;
 }
 
+/* Specific styling for future forecast */
 .five-day-div {
   width: 100%;
   display: flex;
@@ -127,7 +136,9 @@ div.weather-div {
   margin: 5px;
   width: 19%;
 }
+/* End of styling for weather cards */
 
+/* Adds mobile responisve functionality */
 @media screen and (max-width: 1050px) {
   .current-day-card,
   .dayOneForecast,
@@ -138,7 +149,6 @@ div.weather-div {
     min-width: 400px;
   }
 }
-
 @media screen and (max-width: 400px) {
   .current-day-card,
   .dayOneForecast,

@@ -15,7 +15,7 @@ export function CodingQuiz() {
   const [gameScreen, setGameScreen] = useState("hidden");
   const [scoreBoard, setScoreBoard] = useState("hidden");
   const [score, setScore] = useState(0);
-  const [time, setTime] = useState(45);
+  const [time, setTime] = useState(50);
 
   //Quiz questions, choices, and answers
   const questions = [
@@ -127,7 +127,7 @@ export function CodingQuiz() {
   const handleStartClick = () => {
     setGameScreen("show");
     setStartScreen("hidden");
-    setTime(45000); // set initial time
+    setTime(50); // set initial time
 
     const timer = setInterval(() => {
       setTime((time) => time - 1); // decrement time every second

@@ -28,7 +28,7 @@ export function HomePage() {
                 front-end framework so I decided to throw all these projects
                 into a single user-friendly and well polished React App. There
                 are some projects that didn't fit the metaphorical bill but you
-                can still check them out on my Github if your interested.
+                can still check them out on my Github if you're interested.
               </Card.Text>
             </Card.Body>
           </Card>
