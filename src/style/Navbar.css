@@ -13,7 +13,7 @@
 a.brand-name {
   font-size: 24px;
   font-family: "Phudu", cursive;
-  color: white;
+  color: white !important;
 }
 a.brand-name:hover {
   background: linear-gradient(
@@ -31,7 +31,7 @@ a.brand-name:hover {
 /* Nav Links */
 a.nav-link,
 a.dropdown-toggle.show.nav-link {
-  color: white;
+  color: white !important;
 }
 
 a.nav-link:hover {
