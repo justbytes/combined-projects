@@ -34,6 +34,7 @@
   --bs-accordion-btn-focus-border-color: none;
   --bs-accordion-active-bg: white;
   --bs-accordion-btn-focus-box-shadow: none;
+  margin: 10px 40px 40px 40px;
 }
 div.accordion-item {
   background-color: #56505a71;
