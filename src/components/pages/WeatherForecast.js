@@ -14,9 +14,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-//Get api key from secret.js
-import { API_KEY } from "../../secret";
-
 //Import style
 import "../../style/WeatherForcast.css";
 
@@ -34,10 +31,11 @@ export function WeatherForecast() {
       const state = stateName;
       if (!city) return;
       //API Calls
+      //Putting the api key in the code below is done just to make the project work as I want to pursue other projects rather then build a backend to handle the api calls. This is bad practice..
       try {
         //Gets long and lat from searched city and state
         const current = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},US&units=imperial&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},US&units=imperial&appid=ada9e2534dd3181291abdcd550374c93`
         );
         //Sets the current weather forecast
         setCurrentWeatherForecast({
@@ -57,7 +55,7 @@ export function WeatherForecast() {
         let lat = current.data.coord.lat;
         let lon = current.data.coord.lon;
         const forecast = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=ada9e2534dd3181291abdcd550374c93`
         );
         //Set 5 day forecast weather data
         setWeatherForecastData({
