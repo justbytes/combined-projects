@@ -22,13 +22,13 @@ export const BootstrapNavbar = () => {
   return (
     <Navbar className="navbar-container" expand="lg">
       <Container fluid>
-        <Navbar.Brand className="brand-name" href="/homePage">
+        <Navbar.Brand className="brand-name" href="#/homePage">
           Combined Projects
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto navbar justify-content-start">
-            <Nav.Link href="/homePage">Home</Nav.Link>
+            <Nav.Link href="#/homePage">Home</Nav.Link>
             <NavDropdown
               className="nav-dropdown"
               title="Backend Projects"
@@ -55,10 +55,10 @@ export const BootstrapNavbar = () => {
             </NavDropdown>
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link href="/passwordGenerator">Password Generator</Nav.Link>
-            <Nav.Link href="/workDayScheduler">Workday Scheduler</Nav.Link>
-            <Nav.Link href="/weatherForecast">Weather Forecast</Nav.Link>
-            <Nav.Link href="/codingQuiz">React Quiz</Nav.Link>
+            <Nav.Link href="#/passwordGenerator">Password Generator</Nav.Link>
+            <Nav.Link href="#/workDayScheduler">Workday Scheduler</Nav.Link>
+            <Nav.Link href="#/weatherForecast">Weather Forecast</Nav.Link>
+            <Nav.Link href="#/codingQuiz">React Quiz</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
