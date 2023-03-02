@@ -5,7 +5,7 @@ import "./style/App.css";
 //Import Bootstrap Navbar
 import { BootstrapNavbar } from "./components/Navbar";
 //Import Pages
-import { PasswordGenerator } from "./components/pages/PasswordGenerator";
+import { PasswordGenerator } from "../src/components/pages/PasswordGenerator";
 import { HomePage } from "./components/pages/HomePage";
 import { WorkDayScheduler } from "./components/pages/WorkDayScheduler";
 import { WeatherForecast } from "./components/pages/WeatherForecast";
