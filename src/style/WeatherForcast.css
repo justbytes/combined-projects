@@ -5,6 +5,7 @@
   box-shadow: inset 0 0 50px rgba(100, 94, 94, 0.582), 0 0 1px 1px white;
   border-radius: 10px;
   margin: 30px;
+  padding-bottom: 10px;
 }
 
 .current-day-title,
@@ -149,6 +150,18 @@ div.weather-div {
     min-width: 400px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .current-day-card,
+  .dayOneForecast,
+  .dayTwoForecast,
+  .dayThreeForecast,
+  .dayFourForecast,
+  .dayFiveForecast {
+    min-width: 300px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .current-day-card,
   .dayOneForecast,
@@ -156,6 +169,6 @@ div.weather-div {
   .dayThreeForecast,
   .dayFourForecast,
   .dayFiveForecast {
-    min-width: 200px;
+    min-width: 250px;
   }
 }

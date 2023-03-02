@@ -15,6 +15,10 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+footer {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 100%;
+}
 /* End of body styling */
 
 /* Styling for headers on all pages */
@@ -54,6 +58,7 @@ body {
 .lead {
   font-family: "Roboto Condensed", sans-serif;
 }
+
 @keyframes glow {
   0% {
     box-shadow: 0 0 10px 5px var(--border-purple);
@@ -65,4 +70,5 @@ body {
     box-shadow: 0 0 10px 5px var(--border-purple);
   }
 }
+
 /* End of styling for headers for pages */
