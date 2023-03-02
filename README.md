@@ -56,3 +56,5 @@ A CLI that utilizes Inquirer.js to prompt user to input info about a project the
 -Google Fonts
 
 # Link to site
+
+https://shiny-entremet-836cde.netlify.app/
